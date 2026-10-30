@@ -1,0 +1,672 @@
+{
+  "as_of": "2026-10-31",
+  "scope": "Each target in integration-targets.md, including existing integrations and excluded repositories. Decisions reflect current public contribution policies and CompanyEnrich public API documentation.",
+  "live_authenticated_api_calls": false,
+  "targets": [
+    {
+      "repository": "NangoHQ/nango",
+      "fit": "High",
+      "status": "pr-open",
+      "assessment": "Provider, key validation, logo and docs submitted.",
+      "evidence_urls": [
+        "https://github.com/NangoHQ/nango/pull/8118"
+      ],
+      "github_urls": [
+        "https://github.com/NangoHQ/nango/pull/8118"
+      ],
+      "validation": [
+        "Provider schema/config tests, formatting and docs checks passed"
+      ],
+      "remaining": [],
+      "details": "Provider, API-key authentication, free credential check, logo, and docs submitted."
+    },
+    {
+      "repository": "PipedreamHQ/pipedream",
+      "fit": "High",
+      "status": "code_pushed_registration_requested",
+      "assessment": "Three tested actions pushed; app registration requested.",
+      "evidence_urls": [
+        "https://github.com/PipedreamHQ/pipedream/blob/master/CONTRIBUTING.md",
+        "https://github.com/PipedreamHQ/pipedream/blob/master/.github/pull_request_template.md",
+        "https://pipedream.com/apps/companyenrich"
+      ],
+      "github_urls": [
+        "https://github.com/PipedreamHQ/pipedream/issues/22385",
+        "https://github.com/namirali/pipedream/tree/codex/companyenrich-integration/components/companyenrich"
+      ],
+      "validation": [
+        "Node mocked request-contract suite: 4 passed",
+        "Repository ESLint: passed",
+        "git diff --check: passed"
+      ],
+      "remaining": [
+        "Pipedream requires hosted app/auth registration before reviewing a new-app PR. Issue filed; source pushed, no upstream PR yet. No authenticated live test."
+      ],
+      "details": "code_pushed_registration_requested"
+    },
+    {
+      "repository": "Significant-Gravitas/AutoGPT",
+      "fit": "High",
+      "status": "upstream_pr_open",
+      "assessment": "Hosted MCP catalog entry and paid-tool effect metadata submitted.",
+      "evidence_urls": [],
+      "github_urls": [
+        "https://github.com/Significant-Gravitas/AutoGPT/pull/16447"
+      ],
+      "validation": [
+        "73 catalog tests passed on Python 3.13 via poetry with unrelated service conftest bypassed",
+        "Black, Ruff, isort, diff check passed",
+        "Precommit secret scanners detect-secrets/gitleaks and general checks passed"
+      ],
+      "remaining": [
+        "Authenticated MCP connection not tested; no key supplied",
+        "Full precommit API schema export requires backend.cli absent in sparse environment; pyright unavailable; disclosed in PR"
+      ],
+      "ci_snapshot": {
+        "lint": "passed",
+        "tests": "running at root snapshot",
+        "cla": "pending; owner must review/sign legal terms",
+        "vercel": "contributor authorization required; external preview approval"
+      },
+      "details": "Hosted MCP catalog entry with Bearer authentication and external effects for five credit-consuming tools"
+    },
+    {
+      "repository": "simstudioai/sim",
+      "fit": "High",
+      "status": "upstream_draft_pr_open",
+      "assessment": "Native tools, workflow block, icon and docs submitted as a draft.",
+      "evidence_urls": [
+        "https://github.com/simstudioai/sim/blob/staging/.github/CONTRIBUTING.md",
+        "https://github.com/simstudioai/sim/blob/staging/.agents/skills/add-integration/SKILL.md",
+        "https://docs.companyenrich.com/reference/get_companies-enrich",
+        "https://docs.companyenrich.com/reference/post_companies-search",
+        "https://docs.companyenrich.com/reference/post_companies-similar"
+      ],
+      "github_urls": [
+        "https://github.com/simstudioai/sim/pull/9485",
+        "https://github.com/namirali/sim/tree/codex/companyenrich-integration"
+      ],
+      "validation": [
+        "Scoped Biome: passed",
+        "Vitest: 3 boundary tests passed after rebase",
+        "Canvas sentences: 3/3 operations passed",
+        "Tool metadata, integration catalog, block access metadata: passed",
+        "Icon-path precision: passed",
+        "Test patterns: passed",
+        "Generated integration docs check: passed",
+        "Full audits attempted: sparse-checkout missing entrypoints/files prevented complete pass; own unused export, icon precision and generated block-name findings fixed",
+        "Full app typecheck stopped after ~13 minutes without diagnostics; final bounded rerun timed out at 120 seconds without diagnostics (not passing)",
+        "Block-registry comparison could not archive missing promisor objects under network restrictions"
+      ],
+      "remaining": [
+        "Draft review is available. Full CI, authenticated CompanyEnrich execution and product UI demo remain outstanding; no API key supplied."
+      ],
+      "details": "upstream_draft_pr_open"
+    },
+    {
+      "repository": "activepieces/activepieces",
+      "fit": "High",
+      "status": "standalone-source-published",
+      "assessment": "Tested standalone piece with enrichment, search and similar-company actions.",
+      "evidence_urls": [
+        "https://github.com/activepieces/activepieces/blob/main/CONTRIBUTING.md"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/activepieces"
+      ],
+      "validation": [
+        "npm run build: passed against published SDK",
+        "npm test: 8 tests passed (native fetch auth/encoding, timeout, redirect policy, sanitized errors, no retry, query/pagination limits)"
+      ],
+      "remaining": [
+        "Upstream pauses external PRs. Prepared standalone private package; no npm or marketplace publication, no authenticated live test."
+      ],
+      "details": "standalone_source_prepared"
+    },
+    {
+      "repository": "corsairdev/corsair",
+      "fit": "High",
+      "status": "standalone-source-published-proposal-open",
+      "assessment": "Tested standalone typed plugin; upstream proposal opened.",
+      "evidence_urls": [
+        "https://github.com/corsairdev/corsair/blob/main/CONTRIBUTING.md",
+        "https://github.com/corsairdev/corsair/blob/main/.github/PLUGIN_PR_RULES.md",
+        "https://corsair.dev/oss?q=companyenrich"
+      ],
+      "github_urls": [
+        "https://github.com/corsairdev/corsair/issues/2014",
+        "https://github.com/namirali/companyenrich-integrations/tree/main/corsair"
+      ],
+      "validation": [
+        "npm run build: passed (typecheck, ESM bundle, declarations)",
+        "npm test: 8 tests passed through real Corsair runtime with mocked HTTP (auth safety, pagination, schema validation, no retries)"
+      ],
+      "remaining": [
+        "OSS claim/assignment required before upstream PR; CompanyEnrich catalog entry unavailable. Live authenticated demo required before merge. Standalone package remains private; database snapshots not live-tested."
+      ],
+      "details": "standalone_source_prepared_proposal_open"
+    },
+    {
+      "repository": "langgenius/dify-plugins",
+      "fit": "High",
+      "status": "upstream-draft-pr-open",
+      "assessment": "Three-tool plugin source and packaged draft PR.",
+      "evidence_urls": [
+        "https://github.com/langgenius/dify-plugins/blob/main/docs/plugin-submission-requirements.md",
+        "https://docs.dify.ai/en/develop-plugin/publishing/standards/contributor-covenant-code-of-conduct"
+      ],
+      "github_urls": [
+        "https://github.com/langgenius/dify-plugins/pull/3576",
+        "https://github.com/namirali/dify-plugins/tree/codex/companyenrich-integration/namirali/companyenrich",
+        "https://github.com/namirali/companyenrich-integrations/tree/main/dify"
+      ],
+      "validation": [
+        "27 mocked tests passed on Python3.12 / dify_plugin0.9.1",
+        "Ruff format and lint passed",
+        "Official CLI0.6.13 package creation passed;18 files inspected",
+        "Independent code review found no substantive issues"
+      ],
+      "remaining": [
+        "Authenticated remote-debugging/Dify Cloud or Community end-to-end test required before marking ready; no dedicated test key supplied."
+      ],
+      "details": "Provider with company enrichment, semantic search, and lookalike tools; source and runtime package pushed. Draft until real Dify deployment validation."
+    },
+    {
+      "repository": "langflow-ai/langflow",
+      "fit": "High",
+      "status": "upstream_pr_open",
+      "assessment": "Native components with tool inputs, icon and bundle discovery.",
+      "evidence_urls": [
+        "https://github.com/langflow-ai/langflow/blob/release-1.14.0/CONTRIBUTING.md",
+        "https://github.com/langflow-ai/langflow/blob/release-1.14.0/src/bundles/lfx-bundles/README.md",
+        "https://docs.companyenrich.com/reference/get_companies-enrich",
+        "https://docs.companyenrich.com/reference/post_companies-search",
+        "https://docs.companyenrich.com/reference/post_companies-similar"
+      ],
+      "github_urls": [
+        "https://github.com/langflow-ai/langflow/pull/16078"
+      ],
+      "validation": [
+        "tests: 37 passed on Python 3.12: 36 CompanyEnrich tests and existing all-no-torch aggregate structure test",
+        "command: uv run --no-project --python ../langflow-venv/bin/python -m pytest -c src/bundles/lfx-bundles/pyproject.toml src/bundles/lfx-bundles/tests/test_companyenrich.py src/bundles/lfx-bundles/tests/test_all_no_torch_extra.py::test_all_no_torch_structure -q",
+        "lint: Ruff format/check passed, Biome2.1.1 check passed (icon and registration files)",
+        "guards: bare-name migration check, process environment-write check passed",
+        "lock: uv lock --check --offline passed; no dependency versions changed",
+        "diff: git diff --cached --check passed",
+        "precommit: All applicable configured pre-commit hooks passed, including secret scanner, Ruff, Biome, migration and environment-write guards.",
+        "working_tree: Clean after commit"
+      ],
+      "remaining": [
+        "No authenticated or billable API calls.",
+        "Full application/frontend build and unrelated provider test suites not run."
+      ],
+      "details": "Native Enrich Company component: GET /companies/enrich; Native Search Companies component: POST /companies/search with natural-language semanticQuery + filters; Native Find Similar Companies component: POST /companies/similar for 1\u201310 domains; Secret API key; fixed HTTPS endpoint; redirect/retry disabled; response/error and pagination handling; lfx-bundles provider extra and aggregate/lock metadata; bundle sidebar + official icon; component docs"
+    },
+    {
+      "repository": "crewAIInc/crewAI",
+      "fit": "High",
+      "status": "pr-open",
+      "assessment": "Native company research tools, docs and tests.",
+      "evidence_urls": [
+        "https://github.com/crewAIInc/crewAI/blob/main/.github/CONTRIBUTING.md"
+      ],
+      "github_urls": [
+        "https://github.com/crewAIInc/crewAI/pull/8844",
+        "https://github.com/crewAIInc/crewAI/issues/8842",
+        "https://github.com/namirali/crewAI/tree/codex/companyenrich-integration"
+      ],
+      "validation": [
+        "21 focused mocked tests passed (Python 3.12)",
+        "Ruff lint and format passed",
+        "mypy --follow-imports=silent passed for implementation",
+        "Docs JSON and all four locale navigation targets validated"
+      ],
+      "remaining": [
+        "Maintainer must add required llm-generated label; GitHub denies namirali AddLabelsToLabelable permission",
+        "No live authenticated API/LLM calls",
+        "Focused suite bypassed workspace root conftest and redirected dependency credential store to temporary path",
+        "Full monorepo suite and rendered Mintlify docs not run"
+      ],
+      "details": "Native tools PR created with linked proposal and explicit AI disclosure; required label could not be applied due GitHub permissions."
+    },
+    {
+      "repository": "run-llama/llama_index",
+      "fit": "High",
+      "status": "standalone-source-published",
+      "assessment": "Standalone native tool package, installable from GitHub.",
+      "evidence_urls": [
+        "https://github.com/run-llama/llama_index/blob/main/CONTRIBUTING.md"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/llama-index"
+      ],
+      "validation": [
+        "45 mocked tests passed against llama-index-core 0.14.25",
+        "Ruff lint and format passed",
+        "Wheel and source distribution built"
+      ],
+      "remaining": [
+        "No upstream PR: new pyproject.toml automatically closes.",
+        "No live authenticated API test",
+        "Verified on Python 3.12/macOS only",
+        "Not published to PyPI"
+      ],
+      "details": "No new integration packages accepted upstream; independently maintained package supported."
+    },
+    {
+      "repository": "agno-agi/agno",
+      "fit": "High, gated",
+      "status": "awaiting-maintainer-triage",
+      "assessment": "Proposal opened.",
+      "evidence_urls": [
+        "https://github.com/agno-agi/agno/blob/main/CONTRIBUTING.md"
+      ],
+      "github_urls": [
+        "https://github.com/agno-agi/agno/issues/11403"
+      ],
+      "validation": [],
+      "remaining": [
+        "Maintainer must add ready label before work/PR."
+      ],
+      "details": "Opened required proposal; implementation must wait for ready label."
+    },
+    {
+      "repository": "n8n-io/n8n",
+      "fit": "Already available",
+      "status": "already-present",
+      "assessment": "Verified CompanyEnrich community node already exists; no duplicate.",
+      "evidence_urls": [
+        "https://n8n.io/integrations/company-enrich/",
+        "https://github.com/kovanio/companyenrich-n8n",
+        "https://www.npmjs.com/package/n8n-nodes-companyenrich"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [],
+      "details": "A verified CompanyEnrich community node already provides Count, Enrich, Find Similar, Get Usage, and Search; no duplicate node or core PR."
+    },
+    {
+      "repository": "camel-ai/camel",
+      "fit": "High, gated",
+      "status": "prototype-source-published-human-review-pending",
+      "assessment": "Standalone toolkit prototype and editable proposal, with 45 mocked tests.",
+      "evidence_urls": [
+        "https://github.com/camel-ai/camel/blob/master/CONTRIBUTING.md#ai-generated-code-policy"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/camel"
+      ],
+      "validation": [
+        "45 mocked tests passed against camel-ai 0.2.90, mcp 1.30.0, openai 2.54.0",
+        "Ruff lint and format passed",
+        "Wheel and source distribution built"
+      ],
+      "remaining": [
+        "Human review/edit required for AI issue/prototype; accepted prior discussion required before PR.",
+        "No live authenticated API test",
+        "Verified on Python 3.12/macOS only",
+        "Not published to PyPI"
+      ],
+      "details": "Prepare prototype and proposal for human review; upstream requires accepted prior discussion and human-verified tests."
+    },
+    {
+      "repository": "botpress/botpress",
+      "fit": "High",
+      "status": "fork-draft-pr-open-upstream-permission-blocked",
+      "assessment": "Tested native integration pushed; draft review PR opened in contributor fork.",
+      "evidence_urls": [],
+      "github_urls": [
+        "https://github.com/namirali/botpress/pull/1",
+        "https://github.com/namirali/botpress/tree/codex/companyenrich-integration/integrations/companyenrich"
+      ],
+      "validation": [
+        "bp build passed",
+        "tsc --noEmit passed",
+        "bp lint passed",
+        "11 Vitest tests passed",
+        "oxfmt and git diff --check passed"
+      ],
+      "remaining": [
+        "GitHub CreatePullRequest rejected: namirali does not have the correct permissions. No upstream PR created.",
+        "No live authenticated API or deployed Botpress bot test."
+      ],
+      "details": "Native integration with three company data actions; tested and pushed."
+    },
+    {
+      "repository": "Klavis-AI/klavis",
+      "fit": "Conditional",
+      "status": "not_submitted",
+      "assessment": "Assessed; existing official hosted MCP is immediately usable.",
+      "evidence_urls": [
+        "https://github.com/Klavis-AI/klavis/blob/main/MCP_SERVER_GUIDE.md",
+        "https://github.com/Klavis-AI/klavis/blob/main/CONTRIBUTING.md"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/klavis/README.md"
+      ],
+      "validation": [],
+      "remaining": [],
+      "details": "No hosted remote catalog path; native MCP server contribution requires mandatory live per-tool natural-language demos/screenshots and CLA signature. Official CompanyEnrich hosted MCP already exists; an incomplete duplicate implementation is not proposed."
+    },
+    {
+      "repository": "punkpeye/awesome-mcp-servers",
+      "fit": "Good distribution, wrong list",
+      "status": "metadata-published-directory-prerequisites-pending",
+      "assessment": "Prepared metadata for the recommended awesome-remote-mcp-servers route.",
+      "evidence_urls": [
+        "https://github.com/punkpeye/awesome-mcp-servers/blob/main/CONTRIBUTING.md",
+        "https://github.com/punkpeye/awesome-remote-mcp-servers/blob/main/CONTRIBUTING.md",
+        "https://glama.ai/mcp/connectors?query=companyenrich"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/mcp-directories/README.md"
+      ],
+      "validation": [],
+      "remaining": [],
+      "details": "Main directory requires public installable GitHub server repo; official hosted MCP has no verified source repository. Its recommended alternate is punkpeye/awesome-remote-mcp-servers. Alternate requires Glama connector listing/badge URL; public connector search has no CompanyEnrich entry. Do not fabricate the badge or publish a third-party listing/account."
+    },
+    {
+      "repository": "wong2/awesome-mcp-servers",
+      "fit": "Good distribution",
+      "status": "metadata-published-web-submission-pending",
+      "assessment": "Prepared public submission metadata.",
+      "evidence_urls": [
+        "https://github.com/wong2/awesome-mcp-servers",
+        "https://mcpservers.org/submit"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/mcp-directories/submission.json",
+        "https://github.com/namirali/companyenrich-integrations/tree/main/mcp-directories/README.md"
+      ],
+      "validation": [],
+      "remaining": [],
+      "details": "Directory explicitly does not accept listing PRs. Submission form needs owner contact email. No external form submitted."
+    },
+    {
+      "repository": "strands-agents/tools",
+      "fit": "High",
+      "status": "standalone-source-published",
+      "assessment": "Standalone native tools, installable from GitHub.",
+      "evidence_urls": [
+        "https://github.com/strands-agents/tools/blob/main/CONTRIBUTING.md#new-tools-policy"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/strands"
+      ],
+      "validation": [
+        "45 mocked tests passed against strands-agents 1.63.0",
+        "Ruff lint and format passed",
+        "Wheel and source distribution built"
+      ],
+      "remaining": [
+        "No upstream PR or feature issue: prohibited for new tools.",
+        "No live authenticated API test",
+        "Verified on Python 3.12/macOS only",
+        "Not published to PyPI"
+      ],
+      "details": "No new tools accepted; community extensions supported."
+    },
+    {
+      "repository": "airbytehq/airbyte",
+      "fit": "Low for current scope",
+      "status": "deferred",
+      "assessment": "Deferred: technically possible for explicit snapshots, weaker fit for recurring lookup/search replication.",
+      "evidence_urls": [
+        "https://docs.airbyte.com/community/contributing-to-airbyte",
+        "https://docs.companyenrich.com/reference/get_companies-enrich",
+        "https://docs.companyenrich.com/reference/post_companies-search"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [
+        "No concrete replication dataset, refresh schedule, or credit budget was specified; no speculative sync connector submitted."
+      ],
+      "details": "Technically feasible as a bounded snapshot connector, but CompanyEnrich lookup/search calls are a weaker fit for automatic warehouse replication: repeated runs may spend credits and the selected lookup/search endpoints do not provide an incremental change cursor. Build only around a concrete domain list or saved-search export requirement with an explicit refresh budget."
+    },
+    {
+      "repository": "deepset-ai/haystack-core-integrations",
+      "fit": "Moderate",
+      "status": "source-branch-ready-live-test-and-workflow-pending",
+      "assessment": "Enrichment component/tool and proposal prepared; code pushed with a separate inert CI patch.",
+      "evidence_urls": [
+        "https://github.com/deepset-ai/haystack-core-integrations/blob/main/.github/ISSUE_TEMPLATE/new-integration-proposal.md"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/haystack-core-integrations/tree/codex/companyenrich-integration",
+        "https://github.com/deepset-ai/haystack-core-integrations/issues/4179",
+        "https://github.com/namirali/companyenrich-integrations/tree/main/haystack"
+      ],
+      "validation": [
+        "35 mocked tests passed on Python 3.12 / Haystack 3.4.1",
+        "2 live tests explicitly skipped: no key/paid-test opt-in",
+        "Ruff lint/format passed",
+        "Full hatch run test:types passed for 4 source modules",
+        "Hatch wheel and source archive built",
+        "Inert workflow patch validated with git apply --check --cached"
+      ],
+      "remaining": [
+        "Haystack AGENTS.md requires external-API tests locally with personal key first; no API key provided, so upstream PR withheld",
+        "OAuth token lacks workflow scope: two CI workflow changes are preserved as an inert patch in the shared repository, not active CI",
+        "No live authenticated test",
+        "Verified locally on Python 3.12/macOS; configured CI matrix not run"
+      ],
+      "details": "Company domain enrichment component + agent tool; native sync/async, Secret serialization, bounded HTTP with explicit retry control. Required proposal opened; upstream PR withheld pending required live test."
+    },
+    {
+      "repository": "dlt-hub/verified-sources",
+      "fit": "Low upstream fit",
+      "status": "deferred",
+      "assessment": "Deferred: existing REST helpers cover the basic API shape.",
+      "evidence_urls": [
+        "https://github.com/dlt-hub/verified-sources/blob/master/CONTRIBUTING.md"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [
+        "A specific warehouse ingestion workflow would justify an application recipe; upstream proposal acknowledgement is required for qualifying new sources."
+      ],
+      "details": "The plain REST API can be consumed with dlt REST resources. The verified-sources contribution policy excludes sources easily implemented with existing REST/SQL/filesystem helpers; a dedicated upstream source is not the right route for these endpoints."
+    },
+    {
+      "repository": "meltano/hub",
+      "fit": "Low for current scope",
+      "status": "deferred",
+      "assessment": "Deferred: a Hub entry needs a working maintained Singer tap/connector.",
+      "evidence_urls": [
+        "https://github.com/meltano/hub/blob/main/CONTRIBUTING.md"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [
+        "No CompanyEnrich Singer tap exists in this work; no unsupported directory listing submitted."
+      ],
+      "details": "A listing requires an actual maintained Singer tap or Airbyte connector. A CompanyEnrich snapshot tap is possible, but should follow demonstrated export/refresh demand and a defined credit budget; adding metadata alone would not create a working integration."
+    },
+    {
+      "repository": "modelcontextprotocol/registry",
+      "fit": "Good distribution",
+      "status": "manifest-published-registry-submission-pending",
+      "assessment": "Official-schema-valid server.json prepared.",
+      "evidence_urls": [
+        "https://github.com/modelcontextprotocol/registry/blob/main/AGENTS.md",
+        "https://github.com/modelcontextprotocol/registry/blob/main/docs/guides/publishing/publish-server.md",
+        "https://registry.modelcontextprotocol.io/v0.1/servers?search=companyenrich&limit=100"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/mcp-registry/server.json",
+        "https://github.com/namirali/companyenrich-integrations/tree/main/mcp-registry/README.md"
+      ],
+      "validation": [
+        "server.json passed official 2025-12-11 JSON schema with jsonschema; no invented repository URL"
+      ],
+      "remaining": [],
+      "details": "Listing PRs and seed changes are explicitly prohibited; official workflow is mcp-publisher with namespace ownership authentication. No domain verification, account or registry publication performed. Public search returned zero CompanyEnrich servers."
+    },
+    {
+      "repository": "superdesigndev/treg",
+      "fit": "Already available",
+      "status": "already_integrated",
+      "assessment": "Comprehensive CompanyEnrich API catalog exists.",
+      "evidence_urls": [
+        "https://github.com/superdesigndev/treg/blob/main/src/treg/catalog/companyenrich.yaml"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [],
+      "details": "Existing comprehensive CompanyEnrich catalog, roughly 39 endpoints, verified stamp 2026-08-20; no concrete bug identified."
+    },
+    {
+      "repository": "getcargohq/cargo-skills",
+      "fit": "Already available",
+      "status": "already_integrated",
+      "assessment": "CompanyEnrich provider playbook exists.",
+      "evidence_urls": [
+        "https://github.com/getcargohq/cargo-skills/blob/main/cargo-gtm/provider-playbooks/companyEnrich.md"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [],
+      "details": "CompanyEnrich provider playbook already covers enrichment, company lookalikes, workforce signals and email workflows; no verified defect to correct."
+    },
+    {
+      "repository": "ComposioHQ/composio",
+      "fit": "High product fit, no PR route",
+      "status": "external-partnership-route",
+      "assessment": "Integration/partnership contact route identified.",
+      "evidence_urls": [
+        "https://github.com/ComposioHQ/composio/blob/next/CONTRIBUTING.md",
+        "https://composio.dev/contact"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [
+        "No toolkit PR route; no external contact message sent."
+      ],
+      "details": "The repository contains SDKs and provider adapters, while third-party toolkit integrations are managed outside this repo. Use the documented partnership/contact route."
+    },
+    {
+      "repository": "FlowiseAI/Flowise",
+      "fit": "No active upstream route",
+      "status": "archived",
+      "assessment": "Archived repository.",
+      "evidence_urls": [
+        "https://github.com/FlowiseAI/Flowise"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [],
+      "details": "The repository is archived and cannot accept new integrations. Use an active framework or the current CrewAI monorepo where applicable."
+    },
+    {
+      "repository": "crewAIInc/crewAI-tools",
+      "fit": "Wrong repository",
+      "status": "archived",
+      "assessment": "Archived; work belongs in the current CrewAI monorepo.",
+      "evidence_urls": [
+        "https://github.com/crewAIInc/crewAI-tools"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [],
+      "details": "The repository is archived and cannot accept new integrations. Use an active framework or the current CrewAI monorepo where applicable."
+    },
+    {
+      "repository": "langchain-ai/langchain-community",
+      "fit": "No active upstream route",
+      "status": "archived",
+      "assessment": "Archived repository.",
+      "evidence_urls": [
+        "https://github.com/langchain-ai/langchain-community"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [],
+      "details": "The repository is archived and cannot accept new integrations. Use an active framework or the current CrewAI monorepo where applicable."
+    },
+    {
+      "repository": "panoratech/Panora",
+      "fit": "No active upstream route",
+      "status": "archived",
+      "assessment": "Archived repository; corrected owner is panoratech.",
+      "evidence_urls": [
+        "https://github.com/panoratech/Panora"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [],
+      "details": "The repository is archived and cannot accept new integrations. Use an active framework or the current CrewAI monorepo where applicable."
+    },
+    {
+      "repository": "automatisch/automatisch",
+      "fit": "Low priority",
+      "status": "deferred",
+      "assessment": "Deferred: technically possible, but latest push was 2026-02-11 at review time.",
+      "evidence_urls": [
+        "https://github.com/automatisch/automatisch"
+      ],
+      "github_urls": [],
+      "validation": [],
+      "remaining": [
+        "No new adapter submitted; repository is not archived."
+      ],
+      "details": "Technically possible, but repository activity is stale: latest push was 2026-02-11 when checked on 2026-10-31. Prioritize active workflow platforms and seek maintainer interest before committing to another custom adapter."
+    },
+    {
+      "repository": "mastra-ai/mastra",
+      "fit": "High via MCP",
+      "status": "connection-example-published",
+      "assessment": "Hosted MCP connection example published.",
+      "evidence_urls": [
+        "https://mastra.ai/docs/connections/mcp"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/mastra/list-tools.mjs",
+        "https://github.com/namirali/companyenrich-integrations/tree/main/mastra/README.md"
+      ],
+      "validation": [
+        "node --check passed; not run against authenticated endpoint"
+      ],
+      "remaining": [],
+      "details": "Official MCPClient supports remote URL and Bearer requestInit.headers; external provider tool bundle is the documented extension path."
+    },
+    {
+      "repository": "windmill-labs/windmill",
+      "fit": "High via MCP",
+      "status": "connection-example-published",
+      "assessment": "MCP resource configuration and setup published.",
+      "evidence_urls": [
+        "https://www.windmill.dev/docs/core_concepts/ai_agents#mcp-tools",
+        "https://hub.windmill.dev/integrations/mcp"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/windmill/companyenrich.resource.json",
+        "https://github.com/namirali/companyenrich-integrations/tree/main/windmill/README.md"
+      ],
+      "validation": [
+        "JSON parsed; resource not imported or published"
+      ],
+      "remaining": [],
+      "details": "Official AI Agents support MCP resources with url and token; prepared import resource with placeholder only."
+    },
+    {
+      "repository": "langchain-ai/langchain",
+      "fit": "High via MCP",
+      "status": "connection-example-published",
+      "assessment": "LangChain 1.4+ MCPAdapter example published.",
+      "evidence_urls": [
+        "https://docs.langchain.com/oss/python/langchain/mcp",
+        "https://gofastmcp.com/clients/auth/bearer"
+      ],
+      "github_urls": [
+        "https://github.com/namirali/companyenrich-integrations/tree/main/langchain"
+      ],
+      "validation": [
+        "python3 -m py_compile passed"
+      ],
+      "remaining": [
+        "Example syntax checked; live authenticated discovery not run."
+      ],
+      "details": "LangChain 1.4+ provides MCPAdapter, so CompanyEnrich can connect through its existing hosted server without a LangChain core provider PR."
+    }
+  ]
+}

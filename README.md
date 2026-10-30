@@ -1,6 +1,6 @@
 # CompanyEnrich integrations
 
-Adapters and connection examples for CompanyEnrich company enrichment, semantic company search, and lookalike discovery. Each directory documents its setup, validation, and upstream distribution status.
+Adapters and connection examples for CompanyEnrich company enrichment, semantic company search, and lookalike discovery. Each directory documents its setup, validation, and upstream distribution status. See the [target-by-target assessment](TARGETS.md) for all upstream PRs, existing integrations, contribution prerequisites, and deferred targets.
 
 ## Available code
 
@@ -8,6 +8,7 @@ Adapters and connection examples for CompanyEnrich company enrichment, semantic 
 | --- | --- | --- |
 | [activepieces](activepieces) | Custom piece with three actions and credential validation | Standalone; upstream currently pauses external contributions |
 | [corsair](corsair) | Company data plugin | Standalone; upstream claim and recorded validation required |
+| [haystack](haystack) | Source branch link and pending CI patch | Live API tests and workflow permission required |
 | [dify](dify) | Provider and three tools | Source for a Dify plugin package; deployment validation pending |
 | [llama-index](llama-index) | Native tool specification | Standalone package; no new upstream integrations accepted |
 | [strands](strands) | Native agent tools | Standalone package; no new upstream tools accepted |
