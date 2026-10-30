@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest>=8,<10
+responses>=0.25,<0.27
+ruff>=0.14,<0.15
+PyYAML>=6,<7

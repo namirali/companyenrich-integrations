@@ -1,0 +1,5 @@
+{
+  "name": "CompanyEnrich",
+  "url": "https://mcp.companyenrich.com/mcp",
+  "token": "<YOUR_COMPANYENRICH_API_KEY>"
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.companyenrich/companyenrich",
+  "title": "CompanyEnrich",
+  "description": "Company enrichment, company search, lookalikes, people search, and reverse email lookup.",
+  "version": "1.0.0",
+  "websiteUrl": "https://docs.companyenrich.com/docs/mcp-server",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.companyenrich.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "CompanyEnrich API key from https://app.companyenrich.com/",
+          "value": "Bearer {api_key}",
+          "variables": {
+            "api_key": {
+              "description": "Your CompanyEnrich API key",
+              "isRequired": true,
+              "isSecret": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

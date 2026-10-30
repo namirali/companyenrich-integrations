@@ -1,0 +1,13 @@
+{
+  "name": "@companyenrich/corsair-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CompanyEnrich company data plugin for Corsair",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": { "build": "tsc --noEmit && tsup index.ts --format esm --dts --external corsair --external zod", "test": "vitest run" },
+  "peerDependencies": { "corsair": "^0.1.153", "zod": "^4.4.3" },
+  "devDependencies": { "corsair": "0.1.153", "zod": "4.4.3", "typescript": "5.9.3", "tsup": "8.5.0", "vitest": "3.2.6", "@types/node": "22.15.29" },
+  "license": "Apache-2.0"
+}

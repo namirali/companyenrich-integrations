@@ -1,0 +1,30 @@
+identity:
+  author: namirali
+  name: companyenrich
+  label:
+    en_US: CompanyEnrich
+  description:
+    en_US: Enrich and discover companies using CompanyEnrich.
+  icon: icon.svg
+  tags:
+  - business
+  - search
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: CompanyEnrich API key
+    placeholder:
+      en_US: Your API key, without the Bearer prefix
+    help:
+      en_US: Create an API key in your CompanyEnrich dashboard. Validation uses the
+        free account endpoint.
+    url: https://app.companyenrich.com/
+tools:
+- tools/enrich_company.yaml
+- tools/search_companies.yaml
+- tools/find_similar_companies.yaml
+extra:
+  python:
+    source: provider/companyenrich.py

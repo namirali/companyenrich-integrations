@@ -1,0 +1,20 @@
+{
+  "name": "CompanyEnrich",
+  "description": "Enrich company profiles, search companies and people, find lookalikes, and look up people by email.",
+  "homepage": "https://companyenrich.com/",
+  "documentation": "https://docs.companyenrich.com/docs/mcp-server",
+  "endpoint": "https://mcp.companyenrich.com/mcp",
+  "transport": "streamable-http",
+  "authentication": {
+    "type": "api-key",
+    "header": "Authorization",
+    "format": "Bearer <YOUR_COMPANYENRICH_API_KEY>",
+    "signup": "https://app.companyenrich.com/"
+  },
+  "categorySuggestion": "Sales / Data enrichment",
+  "remoteConnections": true,
+  "registryName": null,
+  "contactEmail": null,
+  "submissionPlan": "free",
+  "status": "prepared-not-submitted"
+}

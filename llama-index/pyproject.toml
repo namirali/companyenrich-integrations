@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llama-index-tools-companyenrich"
+version = "0.1.0"
+description = "CompanyEnrich company research tools for llama-index"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "CompanyEnrich"}]
+dependencies = ["llama-index-core>=0.14.25", "httpx>=0.27"]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "pytest-asyncio>=0.23", "respx>=0.21", "ruff>=0.11", "build>=1.2"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/llama_index"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]

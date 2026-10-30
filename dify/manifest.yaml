@@ -1,0 +1,33 @@
+version: 0.1.0
+type: plugin
+author: namirali
+name: companyenrich
+label:
+  en_US: CompanyEnrich
+description:
+  en_US: Company enrichment, semantic company search, and lookalike discovery.
+icon: icon.svg
+repo: https://github.com/namirali/companyenrich-integrations
+tags:
+- business
+- search
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+  - provider/companyenrich.yaml
+meta:
+  version: 0.0.1
+  arch:
+  - amd64
+  - arm64
+  runner:
+    language: python
+    version: '3.12'
+    entrypoint: main
+  minimum_dify_version: 1.6.0
+created_at: '2026-10-31T00:00:00Z'
+privacy: PRIVACY.md
