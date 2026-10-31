@@ -2,6 +2,8 @@
 
 Adapters and connection examples for CompanyEnrich company enrichment, semantic company search, and lookalike discovery. Each directory documents its setup, validation, and upstream distribution status. See the [target-by-target assessment](TARGETS.md) for all upstream PRs, existing integrations, contribution prerequisites, and deferred targets.
 
+The [build audit](BUILD_STATUS.md) records the 2026-10-31 fixes, validation for every prepared integration, and remaining upstream CI or approval blockers.
+
 ## Available code
 
 | Directory | Integration | Distribution |
