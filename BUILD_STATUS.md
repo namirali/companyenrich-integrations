@@ -2,6 +2,12 @@
 
 Checked on 2026-10-31. This audit covers all 14 prepared native integrations and all five MCP examples or metadata artifacts. The remaining targets in [TARGETS.md](TARGETS.md) have no submitted implementation to build.
 
+## Latest recheck — 2026-10-31 12:47 Europe/Istanbul
+
+All prepared source branches and PR heads were rechecked. No new integration defect or actionable review finding was found, so no additional source fix was needed. All 15 fresh build, test, package-validation, and MCP runtime checks for the shared repository passed. Pipedream and Botpress also passed their fresh scoped checks. CrewAI, Haystack, and Langflow retain their previously validated, unchanged source commits; current remote checks and review findings were inspected.
+
+AutoGPT still has 54 successful checks; its remaining statuses are Vercel authorization and the CLA. Nango’s official provider validator now also passes locally. Nango, Sim, and Dify fork workflows still await maintainer approval. Langflow’s repaired integration checks remain green; the same upstream Python 3.15 and Docker runner failures remain. Sim’s refreshed full typecheck was attempted but hit a 120-second limit without diagnostics, so it remains unverified.
+
 ## Repairs pushed
 
 | Integration | Repair | Verification |
@@ -16,8 +22,8 @@ Checked on 2026-10-31. This audit covers all 14 prepared native integrations and
 
 | Integration | Result and limits |
 | --- | --- |
-| [Nango PR #8118](https://github.com/NangoHQ/nango/pull/8118) | Posted checks pass or are neutral. Twelve Actions workflows and the documentation preview require maintainer approval; those full builds have not run. No code repair identified. |
-| [Sim draft PR #9485](https://github.com/simstudioai/sim/pull/9485) | Scoped lint, tests, and integration metadata checks pass. Vercel requires deployment authorization and Actions requires maintainer approval. A local full typecheck initially used stale Trigger.dev 4.7.6 dependencies. The pinned Bun 1.4.4 frozen install succeeded and now installs the committed 4.8.2 versions. Full typechecking after that refresh remains unverified; no source change was needed. |
+| [Nango PR #8118](https://github.com/NangoHQ/nango/pull/8118) | The official provider validator passes locally with no CompanyEnrich warnings. Posted checks pass or are neutral. Twelve Actions workflows and the documentation preview require maintainer approval; those full builds have not run. No code repair identified. |
+| [Sim draft PR #9485](https://github.com/simstudioai/sim/pull/9485) | Scoped lint, tests, and integration metadata checks pass. Vercel requires deployment authorization and Actions requires maintainer approval. A local full typecheck initially used stale Trigger.dev 4.7.6 dependencies. The pinned Bun 1.4.4 frozen install succeeded and now installs the committed 4.8.2 versions. A fresh full typecheck after the refresh hit a 120-second limit without diagnostics and remains unverified; scoped checks passed again and no source change was needed. |
 | [Botpress fork PR #1](https://github.com/namirali/botpress/pull/1) | Botpress build, TypeScript, Botpress lint, and 11 tests pass. No posted CI checks. Upstream submission permission remains outstanding. |
 | [Haystack source branch](https://github.com/namirali/haystack-core-integrations/tree/codex/companyenrich-integration) | Formatting, all source type checks, package build, and 35 tests pass; two live tests are skipped. No active fork CI. The proposed workflow remains an inert patch because the GitHub token cannot push workflow changes. |
 | [Activepieces](activepieces) | TypeScript build and all 8 tests pass. |
