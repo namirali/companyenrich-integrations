@@ -2,6 +2,12 @@
 
 Checked on 2026-10-31 after expanding all twelve native adapters to twelve core capabilities and a fixed advanced selector covering 42 HTTP operations. Existing branches and PRs were updated; package-registry publication and authenticated production calls were not performed. See [endpoint coverage](ENDPOINT_COVERAGE.md), [advanced operations](ADVANCED_OPERATIONS.md), and [target/submission status](TARGETS.md).
 
+## Latest PR follow-up
+
+Rechecked reviews, inline comments and CI on 2026-10-31. CrewAI's automated review identified a malformed-JSON error-handling bug: reconstructing Requests' JSONDecodeError with one argument raised a TypeError. Commit `bef3344a` separates JSON decoding from transport errors and raises sanitized errors outside the exception handler so the original request/response cannot remain in the exception chain. Eight regression cases exercise real empty/HTML responses and HTTPError/Timeout failures through public core and advanced tool calls. All 122 provider tests, scoped lint/types and package builds pass; independent review found no remaining issue in this fix.
+
+No new source changes were requested on Nango, AutoGPT, Dify, Sim, Pipedream or Botpress. Botpress also passed a fresh 129-test suite, typecheck, formatting, SDK lint and build. Pipedream, Corsair, Agno and Haystack proposals remain open without maintainer replies. GitHub reported no Actions runs for the standalone repository; its validation remains local. Existing live-testing and submission requirements below still apply.
+
 ## Expanded source checks
 
 Tests exercise actual platform registrations, all twelve core routes and all 42 advanced mappings with mocked HTTP. Coverage includes complete responses and metadata, zero counts, batch arrays, filters/expansions, exact large person IDs, strict beta opt-in, required fields/bounds, sanitized errors, and no unintended retries. Native Python async paths are covered where exposed. Additional tests use public framework invocation paths to catch input coercion before HTTP.
@@ -17,7 +23,7 @@ Tests exercise actual platform registrations, all twelve core routes and all 42 
 | Sim | 49 focused tests; scoped Biome; 13/13 canvas checks; block registry, generated metadata/docs/deployment catalog checks; 60 of 62 broad audits pass | [Draft PR #9485](https://github.com/simstudioai/sim/pull/9485), `8f676806` |
 | Pipedream | 49 tests; ESLint; component build; official scoped key/app-property/duplicate validators pass using the actual component source | [Branch](https://github.com/namirali/pipedream/tree/codex/companyenrich-integration), `daa6917e` |
 | Botpress | 129 tests; TypeScript, SDK build/lint and formatting pass | [Fork draft PR #1](https://github.com/namirali/botpress/pull/1), `863f3292` |
-| CrewAI | 114 tests including real catalog extraction; five-module mypy check; Ruff; wheel and sdist pass | [PR #8844](https://github.com/crewAIInc/crewAI/pull/8844), `3d1d6946` |
+| CrewAI | 122 tests including real catalog extraction and malformed-JSON/transport-error regressions; five-module mypy check; Ruff; wheel and sdist pass | [PR #8844](https://github.com/crewAIInc/crewAI/pull/8844), `bef3344a` |
 | Langflow | 128 provider tests plus 163 migration tests (291 total); actual frontend/bundle registration; Ruff; migration guards; release plan; wheel and sdist pass | [PR #16078](https://github.com/langflow-ai/langflow/pull/16078), `ef3a1dd8` |
 | Haystack | 210 tests pass, two live tests skipped; nine-module mypy check, Ruff, documentation generation, wheel and sdist pass | [Branch](https://github.com/namirali/haystack-core-integrations/tree/codex/companyenrich-integration), `932face9` |
 
@@ -30,7 +36,8 @@ The final review also repaired a missing generated Sim documentation entry, remo
 - **Dify:** the PR remains a draft pending real Dify deployment/remote-debugging validation. Remote package precheck requires maintainer approval. Local warnings concern the manifest's network-domain declaration, unpinned dependencies/offline vulnerability lookup, and a scanner heuristic that mistakes the HTTP dispatcher's `execute` name for possible SQL. There is no database execution in that dispatcher. No blocking local package findings remain.
 - **Haystack:** no upstream PR was opened because live validation and proposal acceptance remain outstanding. Workflow files were not pushed because the credential lacks workflow scope; the [inert CI patch](haystack/upstream-ci.patch) remains review material, not active CI. The existing two live smoke tests only cover domain enrichment.
 - **Botpress:** the updated PR is in the contributor fork; upstream PR creation permission remains unavailable.
-- **CrewAI/Langflow:** new remote runs are pending or require maintainer authorization. Local checks listed above passed; full local monorepo suites are not claimed. CrewAI still requires the maintainer's AI-contribution label. Langflow's early expansion run again hit the known Valkey/Python 3.15 baseline dependency failure. Earlier unrelated Python 3.15 Toolguard/LiteLLM, pandas/MarkItDown and Docker runner-export failures are recorded in prior history; new remote runs must be assessed independently.
+- **CrewAI:** the review-found error-handling issue is fixed in `bef3344a`. The new remote run still needs assessment/maintainer authorization, and the maintainer's AI-contribution label remains required. Local checks listed above passed; a full local monorepo suite is not claimed.
+- **Langflow:** the current `ef3a1dd8` snapshot has 221 successful checks, 12 skipped and 12 failed. The failures are Python 3.15 jobs outside CompanyEnrich: [backend tests](https://github.com/langflow-ai/langflow/actions/runs/41192240584/job/124511873369) show Toolguard/LiteLLM's removed `sre_constants` import, unsupported MarkItDown and a pandas worker crash; [Valkey](https://github.com/langflow-ai/langflow/actions/runs/41192240448/job/124511304924) cannot import `glide_shared.protobuf`. The performance check fails after incomplete backend shards; Docker now passes. These are log-based findings, not a fresh full-suite reproduction on the base branch. The provider's local 291 tests and package checks passed; no CompanyEnrich defect was identified in these failures.
 
 ## Existing proxy and MCP artifacts
 

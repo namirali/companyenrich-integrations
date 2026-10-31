@@ -17,7 +17,9 @@
       "validation": [
         "Provider schema/config tests, formatting and docs checks passed"
       ],
-      "remaining": [],
+      "remaining": [
+        "Maintainer review and approval for twelve fork Actions workflows and the Mintlify preview; no new code-change request as of 2026-10-31."
+      ],
       "details": "Provider, API-key authentication, free credential check, logo, and docs submitted."
     },
     {
@@ -77,8 +79,10 @@
       ],
       "ci_snapshot": {
         "lint": "passed",
-        "tests": "running at root snapshot",
-        "cla": "pending; owner must review/sign legal terms",
+        "checked_at": "2026-10-31",
+        "head_sha": "b4023f38855f4d5a4239c4a39545959762fb513a",
+        "tests": "55 successful checks; all nine GitHub Actions workflows succeeded",
+        "cla": "passed; CLA assistant confirms all committers signed",
         "vercel": "contributor authorization required; external preview approval"
       },
       "details": "Hosted MCP catalog entry with Bearer authentication and external effects for five credit-consuming tools"
