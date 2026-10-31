@@ -10,6 +10,7 @@ from dify_plugin.entities.tool import ToolProviderConfiguration
 from dify_plugin.errors.tool import ToolProviderCredentialValidationError
 
 from common.client import CompanyEnrichClient, CompanyEnrichError
+from common.actions import OPERATIONS
 from provider.companyenrich import CompanyEnrichProvider
 from tools.enrich_company import EnrichCompanyTool
 from tools.find_similar_companies import FindSimilarCompaniesTool
@@ -27,9 +28,8 @@ def test_manifest_and_provider_load_through_sdk():
     )
     assert manifest.meta.runner.version == "3.12"
     assert [tool.identity.name for tool in provider.tools] == [
-        "enrich_company",
-        "search_companies",
-        "find_similar_companies",
+        *OPERATIONS,
+        "advanced_operation",
     ]
     assert all(Path(tool.extra.python.source).exists() for tool in provider.tools)
     assert Path("_assets", manifest.icon).exists()

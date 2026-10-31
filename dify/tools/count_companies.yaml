@@ -1,0 +1,48 @@
+identity:
+  name: count_companies
+  author: namirali
+  label:
+    en_US: Count Companies
+description:
+  human:
+    en_US: Count Companies using CompanyEnrich. Preserves the full response; one request
+      per invocation, no retries. May consume credits.
+  llm: Count Companies using CompanyEnrich. Preserves the full response; one request
+    per invocation, no retries. May consume credits.
+parameters:
+- name: query
+  type: string
+  required: false
+  label:
+    en_US: Query
+  human_description:
+    en_US: Natural-language company search (up to 500 characters), or person name
+      search for Search People.
+  llm_description: Natural-language company search (up to 500 characters), or person
+    name search for Search People.
+  form: llm
+- name: literal_query
+  type: string
+  required: false
+  label:
+    en_US: Literal Query
+  human_description:
+    en_US: Company name/domain search (up to 250 characters); can be combined with
+      semantic search.
+  llm_description: Company name/domain search (up to 250 characters); can be combined
+    with semantic search.
+  form: llm
+- name: filters
+  type: string
+  required: false
+  label:
+    en_US: Filters
+  human_description:
+    en_US: JSON object with documented structured filters. Dedicated nonempty parameters
+      take precedence. See https://docs.companyenrich.com/reference/.
+  llm_description: JSON object with documented structured filters. Dedicated nonempty
+    parameters take precedence. See https://docs.companyenrich.com/reference/.
+  form: llm
+extra:
+  python:
+    source: tools/count_companies.py

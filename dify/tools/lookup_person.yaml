@@ -1,0 +1,35 @@
+identity:
+  name: lookup_person
+  author: namirali
+  label:
+    en_US: Lookup Person by Email
+description:
+  human:
+    en_US: Lookup Person by Email using CompanyEnrich. Preserves the full response;
+      one request per invocation, no retries. May consume credits.
+  llm: Lookup Person by Email using CompanyEnrich. Preserves the full response; one
+    request per invocation, no retries. May consume credits.
+parameters:
+- name: email
+  type: string
+  required: true
+  label:
+    en_US: Email
+  human_description:
+    en_US: Email address to look up.
+  llm_description: Email address to look up.
+  form: llm
+- name: expand
+  type: string
+  required: false
+  label:
+    en_US: Expand
+  human_description:
+    en_US: Comma-separated expansions (workforce for company routes, education for
+      people routes).
+  llm_description: Comma-separated expansions (workforce for company routes, education
+    for people routes).
+  form: llm
+extra:
+  python:
+    source: tools/lookup_person.py

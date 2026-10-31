@@ -1,19 +1,19 @@
 # CompanyEnrich integrations
 
-Adapters and connection examples for CompanyEnrich company enrichment, company search, and lookalike discovery. These are initial integrations with partial endpoint and input coverage; they do not expose the complete CompanyEnrich API. Each directory documents its setup, validation, and upstream distribution status. See the [target-by-target assessment](TARGETS.md) for all upstream PRs, existing integrations, contribution prerequisites, and deferred targets.
+Adapters and connection examples for CompanyEnrich company and people discovery, enrichment, workforce, and API jobs. Native adapters expose twelve core capabilities and a fixed advanced selector covering 42 documented operations. Saved-list administration is intentionally excluded, and live API validation remains outstanding. Each directory documents its setup, validation, and upstream distribution status. See the [target-by-target assessment](TARGETS.md) for all upstream PRs, existing integrations, contribution prerequisites, and deferred targets.
 
-The [build audit](BUILD_STATUS.md) records the 2026-10-31 fixes, validation for every prepared integration, and remaining upstream CI or approval blockers.
+The [build audit](BUILD_STATUS.md) records the 2026-10-31 endpoint expansion, validation for every prepared integration, and remaining upstream CI or approval blockers.
 
-The [endpoint coverage audit](ENDPOINT_COVERAGE.md) distinguishes native actions, Nango proxy access, and dynamic MCP tools, and records missing endpoint families, filters, and response fields.
+The [endpoint coverage audit](ENDPOINT_COVERAGE.md) distinguishes native actions, Nango proxy access, and dynamic MCP tools, and records implemented endpoint families, input controls, response behavior, and remaining limits. See [all advanced operations](ADVANCED_OPERATIONS.md).
 
 ## Available code
 
 | Directory | Integration | Distribution |
 | --- | --- | --- |
-| [activepieces](activepieces) | Custom piece with three actions and credential validation | Standalone; upstream currently pauses external contributions |
+| [activepieces](activepieces) | Custom piece with twelve core actions, advanced selector and credential validation | Standalone; upstream currently pauses external contributions |
 | [corsair](corsair) | Company data plugin | Standalone; upstream claim and recorded validation required |
 | [haystack](haystack) | Source branch link and pending CI patch | Live API tests and workflow permission required |
-| [dify](dify) | Provider and three tools | Source for a Dify plugin package; deployment validation pending |
+| [dify](dify) | Provider with twelve core tools and advanced selector | Source for a Dify plugin package; deployment validation pending |
 | [llama-index](llama-index) | Native tool specification | Standalone package; no new upstream integrations accepted |
 | [strands](strands) | Native agent tools | Standalone package; no new upstream tools accepted |
 | [camel](camel) | Toolkit prototype | Human review and accepted proposal required before upstream submission |

@@ -5,10 +5,10 @@ identity:
     en_US: Find Similar Companies
 description:
   human:
-    en_US: Find companies similar to seed company domains. Returns one page and may
-      consume CompanyEnrich credits.
-  llm: Find companies similar to seed company domains. Returns one page and may consume
-    CompanyEnrich credits.
+    en_US: Find Similar Companies using CompanyEnrich. Preserves the full response;
+      one request per invocation, no retries. May consume credits.
+  llm: Find Similar Companies using CompanyEnrich. Preserves the full response; one
+    request per invocation, no retries. May consume credits.
 parameters:
 - name: domains
   type: string
@@ -16,36 +16,65 @@ parameters:
   label:
     en_US: Domains
   human_description:
-    en_US: One to ten company domains separated by commas, for example stripe.com,adyen.com.
-  llm_description: One to ten company domains separated by commas, for example stripe.com,adyen.com.
+    en_US: 'Comma-separated domains: 1–10 for lookalikes, 1–50 for batch enrichment.'
+  llm_description: 'Comma-separated domains: 1–10 for lookalikes, 1–50 for batch enrichment.'
+  form: llm
+- name: filters
+  type: string
+  required: false
+  label:
+    en_US: Filters
+  human_description:
+    en_US: JSON object with documented structured filters. Dedicated nonempty parameters
+      take precedence. See https://docs.companyenrich.com/reference/.
+  llm_description: JSON object with documented structured filters. Dedicated nonempty
+    parameters take precedence. See https://docs.companyenrich.com/reference/.
   form: llm
 - name: page
   type: number
   required: false
+  label:
+    en_US: Page
+  human_description:
+    en_US: One-based page. Page × page size cannot exceed 10,000.
+  llm_description: One-based page. Page × page size cannot exceed 10,000.
+  form: llm
   default: 1
   min: 1
   max: 10000
   precision: 0
-  label:
-    en_US: Page
-  human_description:
-    en_US: Page number, starting at 1. Page × page size cannot exceed 10,000.
-  llm_description: Page number, starting at 1. Page × page size cannot exceed 10,000.
-  form: llm
 - name: page_size
   type: number
   required: false
+  label:
+    en_US: Page Size
+  human_description:
+    en_US: Results per page (1–100). No automatic pagination.
+  llm_description: Results per page (1–100). No automatic pagination.
+  form: llm
   default: 10
   min: 1
   max: 100
   precision: 0
+- name: expand
+  type: string
+  required: false
   label:
-    en_US: Page Size
+    en_US: Expand
   human_description:
-    en_US: Maximum results on this page. Additional pages require explicit tool calls
-      and may consume credits.
-  llm_description: Maximum results on this page. Additional pages require explicit
-    tool calls and may consume credits.
+    en_US: Comma-separated expansions (workforce for company routes, education for
+      people routes).
+  llm_description: Comma-separated expansions (workforce for company routes, education
+    for people routes).
+  form: llm
+- name: wait_for_enrichment
+  type: boolean
+  required: false
+  label:
+    en_US: Wait For Enrichment
+  human_description:
+    en_US: Wait for enrichment when supported; this still makes one request.
+  llm_description: Wait for enrichment when supported; this still makes one request.
   form: llm
 extra:
   python:

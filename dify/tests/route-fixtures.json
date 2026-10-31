@@ -1,0 +1,405 @@
+[
+  {
+    "input": {
+      "operation": "get_companies_enrich",
+      "query": {
+        "domain": "software"
+      }
+    },
+    "method": "GET",
+    "path": "/companies/enrich"
+  },
+  {
+    "input": {
+      "operation": "post_companies_enrich",
+      "body": {
+        "name": "Example"
+      }
+    },
+    "method": "POST",
+    "path": "/companies/enrich"
+  },
+  {
+    "input": {
+      "operation": "post_companies_enrich_batch",
+      "body": {
+        "domains": [
+          "example.com"
+        ]
+      }
+    },
+    "method": "POST",
+    "path": "/companies/enrich/batch"
+  },
+  {
+    "input": {
+      "operation": "get_companies_workforce",
+      "query": {
+        "domain": "example.com"
+      }
+    },
+    "method": "GET",
+    "path": "/companies/workforce"
+  },
+  {
+    "input": {
+      "operation": "get_companies_autocomplete",
+      "query": {
+        "query": "software"
+      }
+    },
+    "method": "GET",
+    "path": "/companies/autocomplete"
+  },
+  {
+    "input": {
+      "operation": "post_companies_enrich_bulk",
+      "body": {
+        "domains": [
+          "example.com"
+        ]
+      }
+    },
+    "method": "POST",
+    "path": "/companies/enrich/bulk"
+  },
+  {
+    "input": {
+      "operation": "get_companies_enrich_bulk_jobid",
+      "path_parameters": {
+        "jobId": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    },
+    "method": "GET",
+    "path": "/companies/enrich/bulk/550e8400-e29b-41d4-a716-446655440000"
+  },
+  {
+    "input": {
+      "operation": "get_companies_enrich_bulk_jobs"
+    },
+    "method": "GET",
+    "path": "/companies/enrich/bulk/jobs"
+  },
+  {
+    "input": {
+      "operation": "post_companies_search",
+      "body": {}
+    },
+    "method": "POST",
+    "path": "/companies/search"
+  },
+  {
+    "input": {
+      "operation": "post_companies_search_preview",
+      "body": {}
+    },
+    "method": "POST",
+    "path": "/companies/search/preview"
+  },
+  {
+    "input": {
+      "operation": "post_companies_search_count",
+      "body": {}
+    },
+    "method": "POST",
+    "path": "/companies/search/count"
+  },
+  {
+    "input": {
+      "operation": "post_companies_search_scroll",
+      "body": {}
+    },
+    "method": "POST",
+    "path": "/companies/search/scroll"
+  },
+  {
+    "input": {
+      "operation": "get_companies",
+      "query": {
+        "id": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    },
+    "method": "GET",
+    "path": "/companies"
+  },
+  {
+    "input": {
+      "operation": "post_companies_search_async",
+      "body": {
+        "count": 1
+      }
+    },
+    "method": "POST",
+    "path": "/companies/search/async"
+  },
+  {
+    "input": {
+      "operation": "get_companies_search_async_jobid",
+      "path_parameters": {
+        "jobId": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    },
+    "method": "GET",
+    "path": "/companies/search/async/550e8400-e29b-41d4-a716-446655440000"
+  },
+  {
+    "input": {
+      "operation": "get_companies_search_async_jobs"
+    },
+    "method": "GET",
+    "path": "/companies/search/async/jobs"
+  },
+  {
+    "input": {
+      "operation": "post_companies_similar",
+      "body": {
+        "domains": [
+          "example.com"
+        ]
+      }
+    },
+    "method": "POST",
+    "path": "/companies/similar"
+  },
+  {
+    "input": {
+      "operation": "post_companies_similar_preview",
+      "body": {
+        "domains": [
+          "example.com"
+        ]
+      }
+    },
+    "method": "POST",
+    "path": "/companies/similar/preview"
+  },
+  {
+    "input": {
+      "operation": "post_companies_similar_count",
+      "body": {
+        "domains": [
+          "example.com"
+        ]
+      }
+    },
+    "method": "POST",
+    "path": "/companies/similar/count"
+  },
+  {
+    "input": {
+      "operation": "post_companies_similar_scroll",
+      "body": {
+        "domains": [
+          "example.com"
+        ]
+      }
+    },
+    "method": "POST",
+    "path": "/companies/similar/scroll"
+  },
+  {
+    "input": {
+      "operation": "post_people_lookup",
+      "body": {
+        "email": "person@example.com"
+      }
+    },
+    "method": "POST",
+    "path": "/people/lookup"
+  },
+  {
+    "input": {
+      "operation": "get_people",
+      "query": {
+        "id": 42
+      }
+    },
+    "method": "GET",
+    "path": "/people"
+  },
+  {
+    "input": {
+      "operation": "post_people_search",
+      "body": {}
+    },
+    "method": "POST",
+    "path": "/people/search"
+  },
+  {
+    "input": {
+      "operation": "post_people_search_scroll",
+      "body": {}
+    },
+    "method": "POST",
+    "path": "/people/search/scroll"
+  },
+  {
+    "input": {
+      "operation": "get_people_email",
+      "query": {
+        "id": 42
+      },
+      "allow_beta": true
+    },
+    "method": "GET",
+    "path": "/people/email"
+  },
+  {
+    "input": {
+      "operation": "post_people_email_bulk",
+      "body": {
+        "items": [
+          {
+            "person_id": 42
+          }
+        ]
+      },
+      "allow_beta": true
+    },
+    "method": "POST",
+    "path": "/people/email/bulk"
+  },
+  {
+    "input": {
+      "operation": "get_people_email_bulk_jobid",
+      "path_parameters": {
+        "jobId": "550e8400-e29b-41d4-a716-446655440000"
+      },
+      "allow_beta": true
+    },
+    "method": "GET",
+    "path": "/people/email/bulk/550e8400-e29b-41d4-a716-446655440000"
+  },
+  {
+    "input": {
+      "operation": "get_people_education",
+      "query": {
+        "id": 42
+      }
+    },
+    "method": "GET",
+    "path": "/people/education"
+  },
+  {
+    "input": {
+      "operation": "post_people_search_async",
+      "body": {
+        "count": 1
+      }
+    },
+    "method": "POST",
+    "path": "/people/search/async"
+  },
+  {
+    "input": {
+      "operation": "get_people_search_async_jobid",
+      "path_parameters": {
+        "jobId": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    },
+    "method": "GET",
+    "path": "/people/search/async/550e8400-e29b-41d4-a716-446655440000"
+  },
+  {
+    "input": {
+      "operation": "get_people_search_async_jobs"
+    },
+    "method": "GET",
+    "path": "/people/search/async/jobs"
+  },
+  {
+    "input": {
+      "operation": "get_jobs"
+    },
+    "method": "GET",
+    "path": "/jobs"
+  },
+  {
+    "input": {
+      "operation": "get_jobs_jobid",
+      "path_parameters": {
+        "jobId": "550e8400-e29b-41d4-a716-446655440000"
+      }
+    },
+    "method": "GET",
+    "path": "/jobs/550e8400-e29b-41d4-a716-446655440000"
+  },
+  {
+    "input": {
+      "operation": "get_geo_regions"
+    },
+    "method": "GET",
+    "path": "/geo/regions"
+  },
+  {
+    "input": {
+      "operation": "get_geo_countries_countrycode",
+      "path_parameters": {
+        "countryCode": "US"
+      }
+    },
+    "method": "GET",
+    "path": "/geo/countries/US"
+  },
+  {
+    "input": {
+      "operation": "post_geo_countries",
+      "body": {}
+    },
+    "method": "POST",
+    "path": "/geo/countries"
+  },
+  {
+    "input": {
+      "operation": "post_geo_states",
+      "body": {}
+    },
+    "method": "POST",
+    "path": "/geo/states"
+  },
+  {
+    "input": {
+      "operation": "post_geo_cities",
+      "body": {}
+    },
+    "method": "POST",
+    "path": "/geo/cities"
+  },
+  {
+    "input": {
+      "operation": "get_industries"
+    },
+    "method": "GET",
+    "path": "/industries"
+  },
+  {
+    "input": {
+      "operation": "get_keywords_autocomplete",
+      "query": {
+        "query": "software"
+      }
+    },
+    "method": "GET",
+    "path": "/keywords/autocomplete"
+  },
+  {
+    "input": {
+      "operation": "get_technologies_autocomplete",
+      "query": {
+        "query": "software"
+      }
+    },
+    "method": "GET",
+    "path": "/technologies/autocomplete"
+  },
+  {
+    "input": {
+      "operation": "get_positions_autocomplete",
+      "query": {
+        "query": "software"
+      }
+    },
+    "method": "GET",
+    "path": "/positions/autocomplete"
+  }
+]

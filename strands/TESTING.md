@@ -2,11 +2,11 @@
 
 Verified on 2026-10-31 with Python 3.12 on macOS against strands-agents 1.63.0.
 
-- `pytest -q`: 45 passed. HTTP responses are mocked with respx; framework tool schemas and dispatch use the actual installed framework.
+- `pytest -q`: 318 passed. HTTP responses are mocked with respx; framework tool schemas and dispatch use the actual installed framework.
 - `ruff check src tests` and `ruff format --check src tests`: passed.
-- `uv build`: wheel and source distribution built successfully.
+- `uv build --offline`: wheel and source distribution built successfully.
 
-Coverage includes sync/async request authentication and payloads, pagination metadata, invalid arguments, missing credentials, HTTP redirects and 401/402/429/500 errors, timeouts, response shape, and framework dispatch. Requests are bounded to one page and are never retried automatically.
+Coverage includes all twelve core routes and 42 advanced mappings, actual framework registry dispatch, sync/async requests, full response preservation, counts including zero, arrays, large int64 IDs, filters/expansions, beta opt-in, pagination and batch/seed/export limits, invalid inputs before HTTP, credentials, redirects and 401/402/429/500 errors, timeouts, sanitized errors, and serialization. Requests are bounded to one page and are never retried automatically.
 
 No live authenticated CompanyEnrich request, paid API call, LLM call, PyPI publication, or upstream framework submission was performed. Other Python versions and operating systems have not been tested.
 

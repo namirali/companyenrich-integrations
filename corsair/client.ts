@@ -1,28 +1,38 @@
-import { ApiError, request } from 'corsair/http';
-import type { ApiRequestOptions, OpenAPIConfig } from 'corsair/http';
+import type { ApiRequestOptions } from 'corsair/http';
 
 export class CompanyEnrichAPIError extends Error {
   readonly status: number;
   readonly retryAfter?: number;
-  constructor(error: ApiError) {
-    super(`CompanyEnrich request failed (HTTP ${error.status})`);
+  constructor(status: number) {
+    super(`CompanyEnrich request failed (HTTP ${status})`);
     this.name = 'CompanyEnrichAPIError';
-    this.status = error.status;
-    this.retryAfter = error.retryAfter;
+    this.status = status;
   }
 }
 
-export async function makeRequest(apiKey: string, options: ApiRequestOptions): Promise<unknown> {
-  const config: OpenAPIConfig = {
-    BASE: 'https://api.companyenrich.com', VERSION: '1', WITH_CREDENTIALS: false, CREDENTIALS: 'omit',
-    HEADERS: { Authorization: `Bearer ${apiKey}`, Accept: 'application/json' },
-  };
+export async function sendRequest(apiKey: string, options: { url: string; method: string; body?: string }): Promise<unknown> {
+  const url = new URL(options.url);
+  if (url.origin !== 'https://api.companyenrich.com') throw new Error('Invalid CompanyEnrich host');
+  let response: Response;
   try {
-    return await request<unknown>(config, options, {
-      rateLimitConfig: { enabled: true, maxRetries: 0, initialRetryDelay: 1000, backoffMultiplier: 2, headerNames: { retryAfter: 'retry-after' } },
+    response = await fetch(url, {
+      method: options.method, body: options.body,
+      headers: { Authorization: `Bearer ${apiKey}`, Accept: 'application/json', 'Content-Type': 'application/json' },
+      redirect: 'error', signal: AbortSignal.timeout(30_000),
     });
-  } catch (error) {
-    if (error instanceof ApiError) throw new CompanyEnrichAPIError(error);
-    throw error;
+  } catch {
+    throw new Error('CompanyEnrich request failed or timed out. No retry was attempted.');
   }
+  if (!response.ok) throw new CompanyEnrichAPIError(response.status);
+  if (url.pathname === '/me') return undefined;
+  try { return await response.json(); }
+  catch { throw new Error('CompanyEnrich returned invalid JSON. No retry was attempted.'); }
+}
+
+export async function makeRequest(apiKey: string, options: ApiRequestOptions): Promise<unknown> {
+  const url = new URL(options.url, 'https://api.companyenrich.com');
+  for (const [key, value] of Object.entries(options.query ?? {})) {
+    for (const item of Array.isArray(value) ? value : [value]) if (item !== undefined) url.searchParams.append(key, String(item));
+  }
+  return sendRequest(apiKey, { url: url.toString(), method: options.method, body: options.body === undefined ? undefined : JSON.stringify(options.body) });
 }

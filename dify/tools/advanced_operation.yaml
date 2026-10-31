@@ -1,0 +1,196 @@
+identity:
+  name: advanced_operation
+  author: namirali
+  label:
+    en_US: Advanced API Operation
+description:
+  human:
+    en_US: Advanced API Operation using CompanyEnrich. Preserves the full response;
+      one request per invocation, no retries. May consume credits.
+  llm: Advanced API Operation using CompanyEnrich. Preserves the full response; one
+    request per invocation, no retries. May consume credits.
+parameters:
+- name: operation
+  type: select
+  required: true
+  label:
+    en_US: Operation
+  human_description:
+    en_US: Choose a fixed documented operation. Email operations are beta and require
+      allow_beta=true. Each invocation sends one request.
+  llm_description: Choose a fixed documented operation. Email operations are beta
+    and require allow_beta=true. Each invocation sends one request.
+  form: llm
+  options:
+  - value: get_companies_enrich
+    label:
+      en_US: Enrich by domain
+  - value: post_companies_enrich
+    label:
+      en_US: Enrich by properties
+  - value: post_companies_enrich_batch
+    label:
+      en_US: Batch enrich
+  - value: get_companies_workforce
+    label:
+      en_US: Workforce
+  - value: get_companies_autocomplete
+    label:
+      en_US: Autocomplete
+  - value: post_companies_enrich_bulk
+    label:
+      en_US: Create job
+  - value: get_companies_enrich_bulk_jobid
+    label:
+      en_US: Get job status
+  - value: get_companies_enrich_bulk_jobs
+    label:
+      en_US: List jobs
+  - value: post_companies_search
+    label:
+      en_US: Search
+  - value: post_companies_search_preview
+    label:
+      en_US: Preview
+  - value: post_companies_search_count
+    label:
+      en_US: Count
+  - value: post_companies_search_scroll
+    label:
+      en_US: Scroll
+  - value: get_companies
+    label:
+      en_US: Get by ID
+  - value: post_companies_search_async
+    label:
+      en_US: Create export job
+  - value: get_companies_search_async_jobid
+    label:
+      en_US: Get export job status
+  - value: get_companies_search_async_jobs
+    label:
+      en_US: List export jobs
+  - value: post_companies_similar
+    label:
+      en_US: Find similar
+  - value: post_companies_similar_preview
+    label:
+      en_US: Preview
+  - value: post_companies_similar_count
+    label:
+      en_US: Count
+  - value: post_companies_similar_scroll
+    label:
+      en_US: Scroll
+  - value: post_people_lookup
+    label:
+      en_US: Lookup person
+  - value: get_people
+    label:
+      en_US: Get by ID
+  - value: post_people_search
+    label:
+      en_US: Search
+  - value: post_people_search_scroll
+    label:
+      en_US: Scroll
+  - value: get_people_email
+    label:
+      en_US: Email (BETA) (Beta)
+  - value: post_people_email_bulk
+    label:
+      en_US: Create bulk email enrichment job (BETA) (Beta)
+  - value: get_people_email_bulk_jobid
+    label:
+      en_US: Get bulk email enrichment job status (BETA) (Beta)
+  - value: get_people_education
+    label:
+      en_US: Education
+  - value: post_people_search_async
+    label:
+      en_US: Create export job
+  - value: get_people_search_async_jobid
+    label:
+      en_US: Get export job status
+  - value: get_people_search_async_jobs
+    label:
+      en_US: List export jobs
+  - value: get_jobs
+    label:
+      en_US: List all jobs
+  - value: get_jobs_jobid
+    label:
+      en_US: Get job details
+  - value: get_geo_regions
+    label:
+      en_US: Get regions
+  - value: get_geo_countries_countrycode
+    label:
+      en_US: Get country by code
+  - value: post_geo_countries
+    label:
+      en_US: Search countries
+  - value: post_geo_states
+    label:
+      en_US: Search states
+  - value: post_geo_cities
+    label:
+      en_US: Search cities
+  - value: get_industries
+    label:
+      en_US: List industries
+  - value: get_keywords_autocomplete
+    label:
+      en_US: Lookup keywords
+  - value: get_technologies_autocomplete
+    label:
+      en_US: Lookup technologies
+  - value: get_positions_autocomplete
+    label:
+      en_US: Lookup positions
+- name: body
+  type: string
+  required: false
+  label:
+    en_US: Body
+  human_description:
+    en_US: Request body as a JSON object. Export jobs require an explicit count (maximum
+      50,000). No automatic polling or result downloading.
+  llm_description: Request body as a JSON object. Export jobs require an explicit
+    count (maximum 50,000). No automatic polling or result downloading.
+  form: llm
+- name: query_parameters
+  type: string
+  required: false
+  label:
+    en_US: Query Parameters
+  human_description:
+    en_US: URL query parameters as a JSON object; array values are repeated query
+      parameters.
+  llm_description: URL query parameters as a JSON object; array values are repeated
+    query parameters.
+  form: llm
+- name: path_parameters
+  type: string
+  required: false
+  label:
+    en_US: Path Parameters
+  human_description:
+    en_US: Path placeholders such as jobId as a JSON object.
+  llm_description: Path placeholders such as jobId as a JSON object.
+  form: llm
+- name: allow_beta
+  type: boolean
+  required: false
+  label:
+    en_US: Allow Beta
+  human_description:
+    en_US: Explicitly enable beta email operations for this invocation. Defaults to
+      false.
+  llm_description: Explicitly enable beta email operations for this invocation. Defaults
+    to false.
+  form: llm
+  default: false
+extra:
+  python:
+    source: tools/advanced_operation.py

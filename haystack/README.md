@@ -1,13 +1,13 @@
 # Haystack CompanyEnrich integration preparation
 
-The tested component, agent tool, package metadata, documentation, and tests are on the
+The tested components, thirteen-tool toolset, package metadata, documentation, and tests are on the
 [CompanyEnrich branch in the Haystack fork](https://github.com/namirali/haystack-core-integrations/tree/codex/companyenrich-integration/integrations/companyenrich).
 The [integration proposal](https://github.com/deepset-ai/haystack-core-integrations/issues/4179) is open.
 There is no upstream PR yet.
 
-`CompanyEnrichCompanyEnricher` and `CompanyEnrichCompanyEnricherTool` enrich one company domain.
-They preserve the full response, support native sync/async HTTP, use Haystack `Secret`, and default
-to zero retries because each request consumes one credit. Obtain a key from the
+`CompanyEnrichCompanyEnricher` and `CompanyEnrichCompanyEnricherTool` retain their domain-enrichment APIs. Eleven additional core components and an advanced request component provide company/people discovery, lookup, workforce, property and batch enrichment, ID retrieval and counts. `CompanyEnrichToolset` exposes all thirteen tools. The fixed advanced selector covers 42 documented operations, including the twelve core routes; see [coverage](../ENDPOINT_COVERAGE.md).
+
+Components preserve full responses, support native sync/async HTTP and use Haystack `Secret`. New operations make one request without retries; the original enricher keeps its explicit user-configured retry option, defaulting to zero. Beta email operations require explicit opt-in, exports require explicit counts, and job/status URLs are never followed automatically. Obtain a key from the
 [CompanyEnrich dashboard](https://app.companyenrich.com/).
 
 ## Install source
@@ -21,7 +21,7 @@ pip install "git+https://github.com/namirali/haystack-core-integrations.git@code
 `upstream-ci.patch` is inert review material. It is **not active CI**. GitHub rejected pushing
 workflow changes because the current OAuth token lacks the `workflow` scope. The source branch
 therefore omits the new CompanyEnrich workflow and coverage-workflow registration. The patch
-contains those two files. The published source commit is `acf0947`.
+contains those two files. The expanded source commit is `932face`.
 
 With `companyenrich-integrations` and `haystack-core-integrations` checked out as sibling directories,
 run these commands **from the root of the Haystack checkout** on `codex/companyenrich-integration`:
@@ -39,11 +39,11 @@ and `COMPANYENRICH_API_KEY` secret, only on Linux/Python 3.11. It does not retry
 
 Verified with Python 3.12 on macOS and Haystack 3.4.1:
 
-- 35 mocked unit tests passed, covering sync/async HTTP, credentials, errors, timeout, validation,
+- 210 mocked unit tests passed, covering sync/async HTTP, credentials, errors, timeout, validation,
   component/tool serialization, and actual tool invocation.
 - Ruff lint and formatting passed.
-- Full Hatch mypy check passed for all four source modules (after installing required pandas stubs).
-- Hatch built the wheel and source archive.
+- Full Hatch mypy check passed for all nine source modules.
+- Hatch built the wheel and source archive; documentation generation passed.
 - Two live tests skipped because no API key or paid-test opt-in was supplied.
 
 Haystack's [agent guidelines](https://github.com/deepset-ai/haystack-core-integrations/blob/main/AGENTS.md)
@@ -56,5 +56,5 @@ export COMPANYENRICH_RUN_PAID_TESTS=1
 hatch run test:integration
 ```
 
-The two tests consume two CompanyEnrich credits in total. No live authenticated API or LLM request
+The two existing live smoke tests cover domain enrichment and consume two CompanyEnrich credits in total. They do not constitute live validation of the expanded endpoint set. No live authenticated API or LLM request
 has been performed during this work. Other Python/OS combinations have not been tested locally.

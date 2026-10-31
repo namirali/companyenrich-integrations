@@ -5,10 +5,10 @@ identity:
     en_US: Enrich Company
 description:
   human:
-    en_US: Retrieve a company profile by domain. This request may consume CompanyEnrich
-      credits.
-  llm: Retrieve a company profile by domain. This request may consume CompanyEnrich
-    credits.
+    en_US: Enrich Company using CompanyEnrich. Preserves the full response; one request
+      per invocation, no retries. May consume credits.
+  llm: Enrich Company using CompanyEnrich. Preserves the full response; one request
+    per invocation, no retries. May consume credits.
 parameters:
 - name: domain
   type: string
@@ -16,8 +16,29 @@ parameters:
   label:
     en_US: Domain
   human_description:
-    en_US: Company domain, for example stripe.com.
-  llm_description: Company domain, for example stripe.com.
+    en_US: Company domain. Workforce requires exactly one domain or company UUID.
+  llm_description: Company domain. Workforce requires exactly one domain or company
+    UUID.
+  form: llm
+- name: expand
+  type: string
+  required: false
+  label:
+    en_US: Expand
+  human_description:
+    en_US: Comma-separated expansions (workforce for company routes, education for
+      people routes).
+  llm_description: Comma-separated expansions (workforce for company routes, education
+    for people routes).
+  form: llm
+- name: wait_for_enrichment
+  type: boolean
+  required: false
+  label:
+    en_US: Wait For Enrichment
+  human_description:
+    en_US: Wait for enrichment when supported; this still makes one request.
+  llm_description: Wait for enrichment when supported; this still makes one request.
   form: llm
 extra:
   python:

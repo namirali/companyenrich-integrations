@@ -4,7 +4,8 @@ identity:
   label:
     en_US: CompanyEnrich
   description:
-    en_US: Enrich and discover companies using CompanyEnrich.
+    en_US: Company and people enrichment, discovery, workforce and explicit advanced
+      API jobs.
   icon: icon.svg
   tags:
   - business
@@ -25,6 +26,16 @@ tools:
 - tools/enrich_company.yaml
 - tools/search_companies.yaml
 - tools/find_similar_companies.yaml
+- tools/search_people.yaml
+- tools/lookup_person.yaml
+- tools/get_workforce.yaml
+- tools/enrich_company_by_properties.yaml
+- tools/enrich_companies_batch.yaml
+- tools/get_company.yaml
+- tools/get_person.yaml
+- tools/count_companies.yaml
+- tools/count_similar_companies.yaml
+- tools/advanced_operation.yaml
 extra:
   python:
     source: provider/companyenrich.py

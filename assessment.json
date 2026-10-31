@@ -24,7 +24,7 @@
       "repository": "PipedreamHQ/pipedream",
       "fit": "High",
       "status": "code_pushed_registration_requested",
-      "assessment": "Three tested actions pushed; app registration requested.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/PipedreamHQ/pipedream/blob/master/CONTRIBUTING.md",
         "https://github.com/PipedreamHQ/pipedream/blob/master/.github/pull_request_template.md",
@@ -34,15 +34,29 @@
         "https://github.com/PipedreamHQ/pipedream/issues/22385",
         "https://github.com/namirali/pipedream/tree/codex/companyenrich-integration/components/companyenrich"
       ],
-      "validation": [
+      "remaining": [
+        "Pipedream requires hosted app/auth registration before reviewing a new-app PR. Issue filed; source pushed, no upstream PR yet. No authenticated live test."
+      ],
+      "initial_assessment": "Three tested actions pushed; app registration requested.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": "GET /me",
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
         "Node mocked request-contract suite: 4 passed",
         "Repository ESLint: passed",
         "git diff --check: passed"
       ],
-      "remaining": [
-        "Pipedream requires hosted app/auth registration before reviewing a new-app PR. Issue filed; source pushed, no upstream PR yet. No authenticated live test."
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
       ],
-      "details": "code_pushed_registration_requested"
+      "initial_details": "code_pushed_registration_requested",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "Significant-Gravitas/AutoGPT",
@@ -59,8 +73,7 @@
         "Precommit secret scanners detect-secrets/gitleaks and general checks passed"
       ],
       "remaining": [
-        "Authenticated MCP connection not tested; no key supplied",
-        "Full precommit API schema export requires backend.cli absent in sparse environment; pyright unavailable; disclosed in PR"
+        "Vercel preview authorization and maintainer review; license/cla check now succeeds."
       ],
       "ci_snapshot": {
         "lint": "passed",
@@ -74,7 +87,7 @@
       "repository": "simstudioai/sim",
       "fit": "High",
       "status": "upstream_draft_pr_open",
-      "assessment": "Native tools, workflow block, icon and docs submitted as a draft.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/simstudioai/sim/blob/staging/.github/CONTRIBUTING.md",
         "https://github.com/simstudioai/sim/blob/staging/.agents/skills/add-integration/SKILL.md",
@@ -86,7 +99,20 @@
         "https://github.com/simstudioai/sim/pull/9485",
         "https://github.com/namirali/sim/tree/codex/companyenrich-integration"
       ],
-      "validation": [
+      "remaining": [
+        "Draft review is available. Full CI, authenticated CompanyEnrich execution and product UI demo remain outstanding; no API key supplied."
+      ],
+      "initial_assessment": "Native tools, workflow block, icon and docs submitted as a draft.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": null,
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
         "Scoped Biome: passed",
         "Vitest: 3 boundary tests passed after rebase",
         "Canvas sentences: 3/3 operations passed",
@@ -98,36 +124,51 @@
         "Full app typecheck stopped after ~13 minutes without diagnostics; final bounded rerun timed out at 120 seconds without diagnostics (not passing)",
         "Block-registry comparison could not archive missing promisor objects under network restrictions"
       ],
-      "remaining": [
-        "Draft review is available. Full CI, authenticated CompanyEnrich execution and product UI demo remain outstanding; no API key supplied."
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
       ],
-      "details": "upstream_draft_pr_open"
+      "initial_details": "upstream_draft_pr_open",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "activepieces/activepieces",
       "fit": "High",
       "status": "standalone-source-published",
-      "assessment": "Tested standalone piece with enrichment, search and similar-company actions.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/activepieces/activepieces/blob/main/CONTRIBUTING.md"
       ],
       "github_urls": [
         "https://github.com/namirali/companyenrich-integrations/tree/main/activepieces"
       ],
-      "validation": [
-        "npm run build: passed against published SDK",
-        "npm test: 8 tests passed (native fetch auth/encoding, timeout, redirect policy, sanitized errors, no retry, query/pagination limits)"
-      ],
       "remaining": [
         "Upstream pauses external PRs. Prepared standalone private package; no npm or marketplace publication, no authenticated live test."
       ],
-      "details": "standalone_source_prepared"
+      "initial_assessment": "Tested standalone piece with enrichment, search and similar-company actions.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": "GET /me",
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
+        "npm run build: passed against published SDK",
+        "npm test: 8 tests passed (native fetch auth/encoding, timeout, redirect policy, sanitized errors, no retry, query/pagination limits)"
+      ],
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
+      ],
+      "initial_details": "standalone_source_prepared",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "corsairdev/corsair",
       "fit": "High",
       "status": "standalone-source-published-proposal-open",
-      "assessment": "Tested standalone typed plugin; upstream proposal opened.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/corsairdev/corsair/blob/main/CONTRIBUTING.md",
         "https://github.com/corsairdev/corsair/blob/main/.github/PLUGIN_PR_RULES.md",
@@ -137,20 +178,34 @@
         "https://github.com/corsairdev/corsair/issues/2014",
         "https://github.com/namirali/companyenrich-integrations/tree/main/corsair"
       ],
-      "validation": [
-        "npm run build: passed (typecheck, ESM bundle, declarations)",
-        "npm test: 8 tests passed through real Corsair runtime with mocked HTTP (auth safety, pagination, schema validation, no retries)"
-      ],
       "remaining": [
         "OSS claim/assignment required before upstream PR; CompanyEnrich catalog entry unavailable. Live authenticated demo required before merge. Standalone package remains private; database snapshots not live-tested."
       ],
-      "details": "standalone_source_prepared_proposal_open"
+      "initial_assessment": "Tested standalone typed plugin; upstream proposal opened.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": "GET /me",
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
+        "npm run build: passed (typecheck, ESM bundle, declarations)",
+        "npm test: 8 tests passed through real Corsair runtime with mocked HTTP (auth safety, pagination, schema validation, no retries)"
+      ],
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
+      ],
+      "initial_details": "standalone_source_prepared_proposal_open",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "langgenius/dify-plugins",
       "fit": "High",
       "status": "upstream-draft-pr-open",
-      "assessment": "Three-tool plugin source and packaged draft PR.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/langgenius/dify-plugins/blob/main/docs/plugin-submission-requirements.md",
         "https://docs.dify.ai/en/develop-plugin/publishing/standards/contributor-covenant-code-of-conduct"
@@ -160,22 +215,36 @@
         "https://github.com/namirali/dify-plugins/tree/codex/companyenrich-integration/namirali/companyenrich",
         "https://github.com/namirali/companyenrich-integrations/tree/main/dify"
       ],
-      "validation": [
+      "remaining": [
+        "Authenticated remote-debugging/Dify Cloud or Community end-to-end test required before marking ready; no dedicated test key supplied."
+      ],
+      "initial_assessment": "Three-tool plugin source and packaged draft PR.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": "GET /me",
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
         "27 mocked tests passed on Python3.12 / dify_plugin0.9.1",
         "Ruff format and lint passed",
         "Official CLI0.6.13 package creation passed;18 files inspected",
         "Independent code review found no substantive issues"
       ],
-      "remaining": [
-        "Authenticated remote-debugging/Dify Cloud or Community end-to-end test required before marking ready; no dedicated test key supplied."
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
       ],
-      "details": "Provider with company enrichment, semantic search, and lookalike tools; source and runtime package pushed. Draft until real Dify deployment validation."
+      "initial_details": "Provider with company enrichment, semantic search, and lookalike tools; source and runtime package pushed. Draft until real Dify deployment validation.",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "langflow-ai/langflow",
       "fit": "High",
       "status": "upstream_pr_open",
-      "assessment": "Native components with tool inputs, icon and bundle discovery.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/langflow-ai/langflow/blob/release-1.14.0/CONTRIBUTING.md",
         "https://github.com/langflow-ai/langflow/blob/release-1.14.0/src/bundles/lfx-bundles/README.md",
@@ -186,7 +255,21 @@
       "github_urls": [
         "https://github.com/langflow-ai/langflow/pull/16078"
       ],
-      "validation": [
+      "remaining": [
+        "No authenticated or billable API calls.",
+        "Full application/frontend build and unrelated provider test suites not run."
+      ],
+      "initial_assessment": "Native components with tool inputs, icon and bundle discovery.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": null,
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
         "tests: 37 passed on Python 3.12: 36 CompanyEnrich tests and existing all-no-torch aggregate structure test",
         "command: uv run --no-project --python ../langflow-venv/bin/python -m pytest -c src/bundles/lfx-bundles/pyproject.toml src/bundles/lfx-bundles/tests/test_companyenrich.py src/bundles/lfx-bundles/tests/test_all_no_torch_extra.py::test_all_no_torch_structure -q",
         "lint: Ruff format/check passed, Biome2.1.1 check passed (icon and registration files)",
@@ -196,17 +279,17 @@
         "precommit: All applicable configured pre-commit hooks passed, including secret scanner, Ruff, Biome, migration and environment-write guards.",
         "working_tree: Clean after commit"
       ],
-      "remaining": [
-        "No authenticated or billable API calls.",
-        "Full application/frontend build and unrelated provider test suites not run."
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
       ],
-      "details": "Native Enrich Company component: GET /companies/enrich; Native Search Companies component: POST /companies/search with natural-language semanticQuery + filters; Native Find Similar Companies component: POST /companies/similar for 1\u201310 domains; Secret API key; fixed HTTPS endpoint; redirect/retry disabled; response/error and pagination handling; lfx-bundles provider extra and aggregate/lock metadata; bundle sidebar + official icon; component docs"
+      "initial_details": "Native Enrich Company component: GET /companies/enrich; Native Search Companies component: POST /companies/search with natural-language semanticQuery + filters; Native Find Similar Companies component: POST /companies/similar for 1\u201310 domains; Secret API key; fixed HTTPS endpoint; redirect/retry disabled; response/error and pagination handling; lfx-bundles provider extra and aggregate/lock metadata; bundle sidebar + official icon; component docs",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "crewAIInc/crewAI",
       "fit": "High",
       "status": "pr-open",
-      "assessment": "Native company research tools, docs and tests.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/crewAIInc/crewAI/blob/main/.github/CONTRIBUTING.md"
       ],
@@ -215,35 +298,44 @@
         "https://github.com/crewAIInc/crewAI/issues/8842",
         "https://github.com/namirali/crewAI/tree/codex/companyenrich-integration"
       ],
-      "validation": [
-        "21 focused mocked tests passed (Python 3.12)",
-        "Ruff lint and format passed",
-        "mypy --follow-imports=silent passed for implementation",
-        "Docs JSON and all four locale navigation targets validated"
-      ],
       "remaining": [
         "Maintainer must add required llm-generated label; GitHub denies namirali AddLabelsToLabelable permission",
         "No live authenticated API/LLM calls",
         "Focused suite bypassed workspace root conftest and redirected dependency credential store to temporary path",
         "Full monorepo suite and rendered Mintlify docs not run"
       ],
-      "details": "Native tools PR created with linked proposal and explicit AI disclosure; required label could not be applied due GitHub permissions."
+      "initial_assessment": "Native company research tools, docs and tests.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": null,
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
+        "21 focused mocked tests passed (Python 3.12)",
+        "Ruff lint and format passed",
+        "mypy --follow-imports=silent passed for implementation",
+        "Docs JSON and all four locale navigation targets validated"
+      ],
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
+      ],
+      "initial_details": "Native tools PR created with linked proposal and explicit AI disclosure; required label could not be applied due GitHub permissions.",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "run-llama/llama_index",
       "fit": "High",
       "status": "standalone-source-published",
-      "assessment": "Standalone native tool package, installable from GitHub.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/run-llama/llama_index/blob/main/CONTRIBUTING.md"
       ],
       "github_urls": [
         "https://github.com/namirali/companyenrich-integrations/tree/main/llama-index"
-      ],
-      "validation": [
-        "45 mocked tests passed against llama-index-core 0.14.25",
-        "Ruff lint and format passed",
-        "Wheel and source distribution built"
       ],
       "remaining": [
         "No upstream PR: new pyproject.toml automatically closes.",
@@ -251,7 +343,26 @@
         "Verified on Python 3.12/macOS only",
         "Not published to PyPI"
       ],
-      "details": "No new integration packages accepted upstream; independently maintained package supported."
+      "initial_assessment": "Standalone native tool package, installable from GitHub.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": null,
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
+        "45 mocked tests passed against llama-index-core 0.14.25",
+        "Ruff lint and format passed",
+        "Wheel and source distribution built"
+      ],
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
+      ],
+      "initial_details": "No new integration packages accepted upstream; independently maintained package supported.",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "agno-agi/agno",
@@ -289,17 +400,12 @@
       "repository": "camel-ai/camel",
       "fit": "High, gated",
       "status": "prototype-source-published-human-review-pending",
-      "assessment": "Standalone toolkit prototype and editable proposal, with 45 mocked tests.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/camel-ai/camel/blob/master/CONTRIBUTING.md#ai-generated-code-policy"
       ],
       "github_urls": [
         "https://github.com/namirali/companyenrich-integrations/tree/main/camel"
-      ],
-      "validation": [
-        "45 mocked tests passed against camel-ai 0.2.90, mcp 1.30.0, openai 2.54.0",
-        "Ruff lint and format passed",
-        "Wheel and source distribution built"
       ],
       "remaining": [
         "Human review/edit required for AI issue/prototype; accepted prior discussion required before PR.",
@@ -307,30 +413,63 @@
         "Verified on Python 3.12/macOS only",
         "Not published to PyPI"
       ],
-      "details": "Prepare prototype and proposal for human review; upstream requires accepted prior discussion and human-verified tests."
+      "initial_assessment": "Standalone toolkit prototype and editable proposal, with 45 mocked tests.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": null,
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
+        "45 mocked tests passed against camel-ai 0.2.90, mcp 1.30.0, openai 2.54.0",
+        "Ruff lint and format passed",
+        "Wheel and source distribution built"
+      ],
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
+      ],
+      "initial_details": "Prepare prototype and proposal for human review; upstream requires accepted prior discussion and human-verified tests.",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "botpress/botpress",
       "fit": "High",
       "status": "fork-draft-pr-open-upstream-permission-blocked",
-      "assessment": "Tested native integration pushed; draft review PR opened in contributor fork.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [],
       "github_urls": [
         "https://github.com/namirali/botpress/pull/1",
         "https://github.com/namirali/botpress/tree/codex/companyenrich-integration/integrations/companyenrich"
       ],
-      "validation": [
+      "remaining": [
+        "GitHub CreatePullRequest rejected: namirali does not have the correct permissions. No upstream PR created.",
+        "No live authenticated API or deployed Botpress bot test."
+      ],
+      "initial_assessment": "Tested native integration pushed; draft review PR opened in contributor fork.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": "GET /me",
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
         "bp build passed",
         "tsc --noEmit passed",
         "bp lint passed",
         "11 Vitest tests passed",
         "oxfmt and git diff --check passed"
       ],
-      "remaining": [
-        "GitHub CreatePullRequest rejected: namirali does not have the correct permissions. No upstream PR created.",
-        "No live authenticated API or deployed Botpress bot test."
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
       ],
-      "details": "Native integration with three company data actions; tested and pushed."
+      "initial_details": "Native integration with three company data actions; tested and pushed.",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "Klavis-AI/klavis",
@@ -386,17 +525,12 @@
       "repository": "strands-agents/tools",
       "fit": "High",
       "status": "standalone-source-published",
-      "assessment": "Standalone native tools, installable from GitHub.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/strands-agents/tools/blob/main/CONTRIBUTING.md#new-tools-policy"
       ],
       "github_urls": [
         "https://github.com/namirali/companyenrich-integrations/tree/main/strands"
-      ],
-      "validation": [
-        "45 mocked tests passed against strands-agents 1.63.0",
-        "Ruff lint and format passed",
-        "Wheel and source distribution built"
       ],
       "remaining": [
         "No upstream PR or feature issue: prohibited for new tools.",
@@ -404,7 +538,26 @@
         "Verified on Python 3.12/macOS only",
         "Not published to PyPI"
       ],
-      "details": "No new tools accepted; community extensions supported."
+      "initial_assessment": "Standalone native tools, installable from GitHub.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": null,
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
+        "45 mocked tests passed against strands-agents 1.63.0",
+        "Ruff lint and format passed",
+        "Wheel and source distribution built"
+      ],
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
+      ],
+      "initial_details": "No new tools accepted; community extensions supported.",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "airbytehq/airbyte",
@@ -427,7 +580,7 @@
       "repository": "deepset-ai/haystack-core-integrations",
       "fit": "Moderate",
       "status": "source-branch-ready-live-test-and-workflow-pending",
-      "assessment": "Enrichment component/tool and proposal prepared; code pushed with a separate inert CI patch.",
+      "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [
         "https://github.com/deepset-ai/haystack-core-integrations/blob/main/.github/ISSUE_TEMPLATE/new-integration-proposal.md"
       ],
@@ -436,7 +589,23 @@
         "https://github.com/deepset-ai/haystack-core-integrations/issues/4179",
         "https://github.com/namirali/companyenrich-integrations/tree/main/haystack"
       ],
-      "validation": [
+      "remaining": [
+        "Haystack AGENTS.md requires external-API tests locally with personal key first; no API key provided, so upstream PR withheld",
+        "OAuth token lacks workflow scope: two CI workflow changes are preserved as an inert patch in the shared repository, not active CI",
+        "No live authenticated test",
+        "Verified locally on Python 3.12/macOS; configured CI matrix not run"
+      ],
+      "initial_assessment": "Enrichment component/tool and proposal prepared; code pushed with a separate inert CI patch.",
+      "coverage": {
+        "core_operations": 12,
+        "advanced_operations_including_core": 42,
+        "credential_only_operation": null,
+        "excluded": [
+          "Five saved-list administration operations",
+          "Undocumented product routes"
+        ]
+      },
+      "initial_validation": [
         "35 mocked tests passed on Python 3.12 / Haystack 3.4.1",
         "2 live tests explicitly skipped: no key/paid-test opt-in",
         "Ruff lint/format passed",
@@ -444,13 +613,11 @@
         "Hatch wheel and source archive built",
         "Inert workflow patch validated with git apply --check --cached"
       ],
-      "remaining": [
-        "Haystack AGENTS.md requires external-API tests locally with personal key first; no API key provided, so upstream PR withheld",
-        "OAuth token lacks workflow scope: two CI workflow changes are preserved as an inert patch in the shared repository, not active CI",
-        "No live authenticated test",
-        "Verified locally on Python 3.12/macOS; configured CI matrix not run"
+      "validation": [
+        "See BUILD_STATUS.md for latest expanded-source tests, builds, remote CI and remaining deployment gates."
       ],
-      "details": "Company domain enrichment component + agent tool; native sync/async, Secret serialization, bounded HTTP with explicit retry control. Required proposal opened; upstream PR withheld pending required live test."
+      "initial_details": "Company domain enrichment component + agent tool; native sync/async, Secret serialization, bounded HTTP with explicit retry control. Required proposal opened; upstream PR withheld pending required live test.",
+      "details": "Core actions cover company and people search/enrichment, workforce, batch/property enrichment, ID lookups and counts. Advanced operations include preview, scroll, explicit bulk/export jobs, beta email, education and taxonomy lookup. No live calls or package-registry publication."
     },
     {
       "repository": "dlt-hub/verified-sources",
@@ -668,5 +835,7 @@
       ],
       "details": "LangChain 1.4+ provides MCPAdapter, so CompanyEnrich can connect through its existing hosted server without a LangChain core provider PR."
     }
-  ]
+  ],
+  "latest_coverage_report": "ENDPOINT_COVERAGE.md",
+  "latest_validation_report": "BUILD_STATUS.md"
 }

@@ -1,53 +1,51 @@
-# Integration build audit
+# Integration build and coverage validation
 
-Checked on 2026-10-31. This audit covers all 14 prepared native integrations and all five MCP examples or metadata artifacts. The remaining targets in [TARGETS.md](TARGETS.md) have no submitted implementation to build.
+Checked on 2026-10-31 after expanding all twelve native adapters to twelve core capabilities and a fixed advanced selector covering 42 HTTP operations. Existing branches and PRs were updated; package-registry publication and authenticated production calls were not performed. See [endpoint coverage](ENDPOINT_COVERAGE.md), [advanced operations](ADVANCED_OPERATIONS.md), and [target/submission status](TARGETS.md).
 
-## Latest recheck — 2026-10-31 12:47 Europe/Istanbul
+## Expanded source checks
 
-All prepared source branches and PR heads were rechecked. No new integration defect or actionable review finding was found, so no additional source fix was needed. All 15 fresh build, test, package-validation, and MCP runtime checks for the shared repository passed. Pipedream and Botpress also passed their fresh scoped checks. CrewAI, Haystack, and Langflow retain their previously validated, unchanged source commits; current remote checks and review findings were inspected.
+Tests exercise actual platform registrations, all twelve core routes and all 42 advanced mappings with mocked HTTP. Coverage includes complete responses and metadata, zero counts, batch arrays, filters/expansions, exact large person IDs, strict beta opt-in, required fields/bounds, sanitized errors, and no unintended retries. Native Python async paths are covered where exposed. Additional tests use public framework invocation paths to catch input coercion before HTTP.
 
-AutoGPT still has 54 successful checks; its remaining statuses are Vercel authorization and the CLA. Nango’s official provider validator now also passes locally. Nango, Sim, and Dify fork workflows still await maintainer approval. Langflow’s repaired integration checks remain green; the same upstream Python 3.15 and Docker runner failures remain. Sim’s refreshed full typecheck was attempted but hit a 120-second limit without diagnostics, so it remains unverified.
-
-## Repairs pushed
-
-| Integration | Repair | Verification |
+| Integration | Final local verification | Published source / review |
 | --- | --- | --- |
-| [AutoGPT PR #16447](https://github.com/Significant-Gravitas/AutoGPT/pull/16447) | Added the required provider icon ID and PNG. Merged upstream `dev`, which already fixes unrelated roster assertions. | 74 catalog tests and all 70 unchanged MCP logo assertions pass locally. Remote rerun has 54 successful checks; remaining Vercel authorization and contribution gates are external to the code. |
-| [Dify PR #3576](https://github.com/langgenius/dify-plugins/pull/3576) | Added the Marketplace-required contact email and rebuilt the `.difypkg`. Source is in this repository. | 27 tests, Ruff, official packaging, and all 12 local Marketplace checks pass. The new remote precheck awaits maintainer approval. |
-| [Langflow PR #16078](https://github.com/langflow-ai/langflow/pull/16078) | Added the provider to the release inventory, bumped the bundle version and matching lock metadata, added canonical migration targets, and corrected the filters input metadata. | Previously failing CI release scripts, release plan, SQLite application checks, and LFX tests on Python 3.11/3.14/3.15 are now green. Local provider tests: 38; migration tests: 163; release-script tests: 738 passed, 1 skipped. Wheel and sdist build pass. |
-| [CrewAI PR #8844](https://github.com/crewAIInc/crewAI/pull/8844) | Exported all three tools from the namespace used for Studio catalog discovery. Added regression coverage through the real tool-spec extractor. | 34 tests, lint, formatting, wheel and sdist build pass. Posted checks pass or are neutral. |
-| [Pipedream branch](https://github.com/namirali/pipedream/tree/codex/companyenrich-integration) | Added the missing workspace lockfile importer and renamed the helper test to the component validator's `common-` convention. | Frozen dependency install, build, component validators, and four tests pass. Hosted app registration still precedes an upstream PR. |
+| Activepieces | 78 tests and TypeScript build pass | [Source](activepieces) |
+| Corsair | 78 tests; TypeScript, ESM bundle and declaration builds pass | [Source](corsair) |
+| Dify | 104 tests; Ruff; official CLI packaging; all 12 local Marketplace checks pass. Archive contains 41 runtime/documentation files | [Source](dify), [draft PR #3576](https://github.com/langgenius/dify-plugins/pull/3576), `15e1cb5` |
+| LlamaIndex | 258 tests; Ruff lint/format; wheel and sdist pass | [Source](llama-index), [verification](llama-index/TESTING.md) |
+| Strands | 318 tests, including actual agent-stream execution of all operations and strict input validation; Ruff; wheel and sdist pass | [Source](strands), [verification](strands/TESTING.md) |
+| CAMEL | 258 tests; actual sync/async registered tool calls; Ruff; wheel and sdist pass | [Source](camel), [verification](camel/TESTING.md) |
+| Sim | 49 focused tests; scoped Biome; 13/13 canvas checks; block registry, generated metadata/docs/deployment catalog checks; 60 of 62 broad audits pass | [Draft PR #9485](https://github.com/simstudioai/sim/pull/9485), `8f676806` |
+| Pipedream | 49 tests; ESLint; component build; official scoped key/app-property/duplicate validators pass using the actual component source | [Branch](https://github.com/namirali/pipedream/tree/codex/companyenrich-integration), `daa6917e` |
+| Botpress | 129 tests; TypeScript, SDK build/lint and formatting pass | [Fork draft PR #1](https://github.com/namirali/botpress/pull/1), `863f3292` |
+| CrewAI | 114 tests including real catalog extraction; five-module mypy check; Ruff; wheel and sdist pass | [PR #8844](https://github.com/crewAIInc/crewAI/pull/8844), `3d1d6946` |
+| Langflow | 128 provider tests plus 163 migration tests (291 total); actual frontend/bundle registration; Ruff; migration guards; release plan; wheel and sdist pass | [PR #16078](https://github.com/langflow-ai/langflow/pull/16078), `ef3a1dd8` |
+| Haystack | 210 tests pass, two live tests skipped; nine-module mypy check, Ruff, documentation generation, wheel and sdist pass | [Branch](https://github.com/namirali/haystack-core-integrations/tree/codex/companyenrich-integration), `932face9` |
 
-## Other implementations checked
+The final review also repaired a missing generated Sim documentation entry, removed retained credentials/response bodies from legacy Haystack error objects, and prevented Haystack/Strands framework input coercion from bypassing numeric and beta-consent validation. Dify, CrewAI, Langflow, LlamaIndex and CAMEL also have explicit host-boundary checks. Haystack preserves its original opt-in retry setting for compatibility, defaulting to zero; new operations make one attempt.
 
-| Integration | Result and limits |
+## Check limits and upstream gates
+
+- **Sim:** the full application typecheck produced no diagnostics before a 180-second deadline and was stopped. Full-repository `test-patterns` and `unused-exports` audits were stopped after approximately seven minutes without diagnostics. These three checks remain unverified; no complete production application build or live UI demo is claimed. Other listed checks passed. Fork Actions require maintainer approval and Vercel requires external-contributor authorization.
+- **Pipedream:** the sparse checkout omits 1,250 unrelated app sources, so global key/app-property validation cannot complete. Unmodified official validators passed in an isolated fixture linked to the real CompanyEnrich source; the global duplicate-key check also passed. [App registration](https://github.com/PipedreamHQ/pipedream/issues/22385) remains necessary before an upstream PR.
+- **Dify:** the PR remains a draft pending real Dify deployment/remote-debugging validation. Remote package precheck requires maintainer approval. Local warnings concern the manifest's network-domain declaration, unpinned dependencies/offline vulnerability lookup, and a scanner heuristic that mistakes the HTTP dispatcher's `execute` name for possible SQL. There is no database execution in that dispatcher. No blocking local package findings remain.
+- **Haystack:** no upstream PR was opened because live validation and proposal acceptance remain outstanding. Workflow files were not pushed because the credential lacks workflow scope; the [inert CI patch](haystack/upstream-ci.patch) remains review material, not active CI. The existing two live smoke tests only cover domain enrichment.
+- **Botpress:** the updated PR is in the contributor fork; upstream PR creation permission remains unavailable.
+- **CrewAI/Langflow:** new remote runs are pending or require maintainer authorization. Local checks listed above passed; full local monorepo suites are not claimed. CrewAI still requires the maintainer's AI-contribution label. Langflow's early expansion run again hit the known Valkey/Python 3.15 baseline dependency failure. Earlier unrelated Python 3.15 Toolguard/LiteLLM, pandas/MarkItDown and Docker runner-export failures are recorded in prior history; new remote runs must be assessed independently.
+
+## Existing proxy and MCP artifacts
+
+Nango and MCP connections already provide generic proxy or dynamic tool discovery, so no redundant REST wrappers were added. Their earlier verified implementations remain unchanged.
+
+| Artifact | Verification / current limits |
 | --- | --- |
-| [Nango PR #8118](https://github.com/NangoHQ/nango/pull/8118) | The official provider validator passes locally with no CompanyEnrich warnings. Posted checks pass or are neutral. Twelve Actions workflows and the documentation preview require maintainer approval; those full builds have not run. No code repair identified. |
-| [Sim draft PR #9485](https://github.com/simstudioai/sim/pull/9485) | Scoped lint, tests, and integration metadata checks pass. Vercel requires deployment authorization and Actions requires maintainer approval. A local full typecheck initially used stale Trigger.dev 4.7.6 dependencies. The pinned Bun 1.4.4 frozen install succeeded and now installs the committed 4.8.2 versions. A fresh full typecheck after the refresh hit a 120-second limit without diagnostics and remains unverified; scoped checks passed again and no source change was needed. |
-| [Botpress fork PR #1](https://github.com/namirali/botpress/pull/1) | Botpress build, TypeScript, Botpress lint, and 11 tests pass. No posted CI checks. Upstream submission permission remains outstanding. |
-| [Haystack source branch](https://github.com/namirali/haystack-core-integrations/tree/codex/companyenrich-integration) | Formatting, all source type checks, package build, and 35 tests pass; two live tests are skipped. No active fork CI. The proposed workflow remains an inert patch because the GitHub token cannot push workflow changes. |
-| [Activepieces](activepieces) | TypeScript build and all 8 tests pass. |
-| [Corsair](corsair) | TypeScript, ESM bundle and declaration builds, and all 8 tests pass. |
-| [LlamaIndex](llama-index) | All 45 tests, wheel and sdist build pass. |
-| [Strands](strands) | All 45 tests, wheel and sdist build pass. |
-| [CAMEL](camel) | All 45 tests, wheel and sdist build pass. |
+| [Nango PR #8118](https://github.com/NangoHQ/nango/pull/8118) | Official provider validator passes locally; posted checks pass or are neutral. Twelve Actions workflows require maintainer approval. |
+| [AutoGPT PR #16447](https://github.com/Significant-Gravitas/AutoGPT/pull/16447) | Earlier 74 catalog tests and 70 MCP logo assertions pass. Current remote snapshot has 55 successful checks; the CLA check now succeeds. Vercel authorization remains the failing external status. |
+| [LangChain](langchain) | Actual `MCPAdapter` tool discovery passed against an in-process FastMCP fixture; URL and bearer authentication checked. Tested with LangChain 1.4.7/FastMCP 4.1.4. |
+| [Mastra](mastra) | Actual example initialized, authenticated, listed tools and disconnected from a local HTTP MCP fixture. Tested with `@mastra/mcp` 2.7.0; requires Node.js 22.13+. |
+| [Windmill](windmill) | Resource JSON and configured URL/credential placeholder verified. No deployment performed. |
+| [MCP Registry](mcp-registry) | Manifest passed the referenced official JSON schema. Namespace verification/publication remain outstanding. |
+| [MCP directories](mcp-directories) | Submission metadata parses; website/listing prerequisites remain outstanding. |
 
-## MCP examples and metadata
+Local MCP fixture tests verify interoperability, not the authenticated hosted server's live tool inventory. No live authenticated or credit-consuming CompanyEnrich requests, LLM calls, or npm/PyPI publications were made. A successful local build does not imply upstream acceptance or completed deployment testing.
 
-| Artifact | Verification |
-| --- | --- |
-| [LangChain](langchain) | Example discovers tools through the actual `MCPAdapter` and an in-process FastMCP server. URL and bearer-token arguments checked. Tested with LangChain 1.4.7 and FastMCP 4.1.4. |
-| [Mastra](mastra) | Actual example sends the bearer header, initializes, lists tools, and disconnects against a local HTTP MCP fixture. No tool calls. Tested with `@mastra/mcp` 2.7.0; documented its Node.js 22.13 minimum. |
-| [Windmill](windmill) | Resource JSON parses and contains the documented server URL and a credential placeholder. No Windmill deployment performed. |
-| [MCP Registry](mcp-registry) | Manifest passes the referenced official JSON schema. Namespace verification and registry publication remain outstanding. |
-| [MCP directories](mcp-directories) | Submission metadata parses. Website listing and directory approval remain outstanding. |
-
-## Remaining limits
-
-Langflow's target branch still has Python 3.15 dependency incompatibilities outside CompanyEnrich: Toolguard imports LiteLLM code that requires the removed `sre_constants` module, and Valkey cannot import `glide_shared.protobuf`. The previous run also hit a pandas datetime worker crash and a deliberately unavailable MarkItDown dependency. The relevant dependency pins and code are unchanged by this integration. These failures were not hidden or bypassed.
-
-Both attempts of Langflow's Docker job completed their build steps but were interrupted by runner shutdown while exporting image layers. No CompanyEnrich build error was reported in those logs; a successful image test still requires a completed runner execution.
-
-Some remote checks remain running or require maintainer authorization; AutoGPT also requires the contributor CLA. A green local package check does not imply upstream acceptance. Dify remains a draft pending deployment testing; Haystack still needs its required live tests. No authenticated or credit-consuming CompanyEnrich requests were made during this audit, and no npm or PyPI packages were published.
-
-Dify package SHA256: `f76659fcbb62f556db2ce88ea49d6a27c4ddc60a5edeba41c55a8a976052bcc5`.
+Dify package SHA256: `0d190a614a3f648956ee3c7cfa30a256ecc0948aec54e2188eadac34afb77262`.

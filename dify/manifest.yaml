@@ -5,7 +5,7 @@ name: companyenrich
 label:
   en_US: CompanyEnrich
 description:
-  en_US: Company enrichment, semantic company search, and lookalike discovery.
+  en_US: Company and people enrichment, discovery, workforce, and explicit API jobs.
 icon: icon.svg
 repo: https://github.com/namirali/companyenrich-integrations
 contact: support@companyenrich.com

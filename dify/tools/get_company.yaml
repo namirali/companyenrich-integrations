@@ -1,0 +1,37 @@
+identity:
+  name: get_company
+  author: namirali
+  label:
+    en_US: Get Company by ID
+description:
+  human:
+    en_US: Get Company by ID using CompanyEnrich. Preserves the full response; one
+      request per invocation, no retries. May consume credits.
+  llm: Get Company by ID using CompanyEnrich. Preserves the full response; one request
+    per invocation, no retries. May consume credits.
+parameters:
+- name: id
+  type: string
+  required: true
+  label:
+    en_US: Id
+  human_description:
+    en_US: Company UUID or person int64 ID as a decimal string. Workforce requires
+      exactly one ID or domain.
+  llm_description: Company UUID or person int64 ID as a decimal string. Workforce
+    requires exactly one ID or domain.
+  form: llm
+- name: expand
+  type: string
+  required: false
+  label:
+    en_US: Expand
+  human_description:
+    en_US: Comma-separated expansions (workforce for company routes, education for
+      people routes).
+  llm_description: Comma-separated expansions (workforce for company routes, education
+    for people routes).
+  form: llm
+extra:
+  python:
+    source: tools/get_company.py

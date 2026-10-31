@@ -1,0 +1,35 @@
+identity:
+  name: count_similar_companies
+  author: namirali
+  label:
+    en_US: Count Similar Companies
+description:
+  human:
+    en_US: Count Similar Companies using CompanyEnrich. Preserves the full response;
+      one request per invocation, no retries. May consume credits.
+  llm: Count Similar Companies using CompanyEnrich. Preserves the full response; one
+    request per invocation, no retries. May consume credits.
+parameters:
+- name: domains
+  type: string
+  required: true
+  label:
+    en_US: Domains
+  human_description:
+    en_US: 'Comma-separated domains: 1–10 for lookalikes, 1–50 for batch enrichment.'
+  llm_description: 'Comma-separated domains: 1–10 for lookalikes, 1–50 for batch enrichment.'
+  form: llm
+- name: filters
+  type: string
+  required: false
+  label:
+    en_US: Filters
+  human_description:
+    en_US: JSON object with documented structured filters. Dedicated nonempty parameters
+      take precedence. See https://docs.companyenrich.com/reference/.
+  llm_description: JSON object with documented structured filters. Dedicated nonempty
+    parameters take precedence. See https://docs.companyenrich.com/reference/.
+  form: llm
+extra:
+  python:
+    source: tools/count_similar_companies.py

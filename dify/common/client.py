@@ -3,6 +3,8 @@ from typing import Any
 
 import requests
 
+from common._validation import prepare_request
+
 
 class CompanyEnrichError(ValueError):
     """A sanitized error suitable for displaying in Dify."""
@@ -13,6 +15,15 @@ class CompanyEnrichClient:
         if not isinstance(api_key, str) or not api_key.strip():
             raise CompanyEnrichError("A CompanyEnrich API key is required.")
         self._api_key = api_key.strip()
+
+    def execute(self, operation: str, **inputs: Any) -> Any:
+        try:
+            method, path, query, body = prepare_request(operation, **inputs)
+        except ValueError as error:
+            raise CompanyEnrichError(str(error)) from None
+        return self._request(
+            method, path, params=query, **({"json": body} if body is not None else {})
+        )
 
     def verify_credentials(self) -> None:
         self._request("GET", "/me")
@@ -74,7 +85,7 @@ class CompanyEnrichClient:
             )
         return page, page_size
 
-    def _request(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
+    def _request(self, method: str, path: str, **kwargs: Any) -> Any:
         try:
             response = requests.request(
                 method,
@@ -96,8 +107,8 @@ class CompanyEnrichClient:
             data = response.json()
         except ValueError:
             raise CompanyEnrichError("CompanyEnrich returned invalid JSON.") from None
-        if not isinstance(data, dict):
+        if path == "/me" and not isinstance(data, dict):
             raise CompanyEnrichError(
                 "CompanyEnrich returned an unexpected response format."
             )
-        return data
+        return None if path == "/me" else data

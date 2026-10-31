@@ -1,6 +1,12 @@
 # CompanyEnrich for Activepieces
 
-Standalone, unpublished piece source with three actions: enrich a company by domain, search company names/domains, and find similar companies from a seed domain. It targets the published Activepieces SDK (`pieces-framework` 0.32.0), rather than unpublished monorepo changes.
+Standalone, unpublished piece source with twelve named actions plus Advanced API Operation. It targets the published Activepieces SDK (`pieces-framework` 0.32.0).
+
+The twelve core capabilities are domain enrichment, company search, lookalikes, people search, email-to-person lookup, workforce, company enrichment by name/social properties, batch enrichment (1–50 domains), company/person ID lookups, and company/lookalike counts. An explicit advanced selector exposes 42 documented operations in total, including those twelve. See [the operation list](https://github.com/namirali/companyenrich-integrations/blob/main/ADVANCED_OPERATIONS.md).
+
+Search accepts structured filters and literal/semantic company queries. Dedicated inputs take precedence over fields in the filters object. Lookalikes accept 1–10 seeds. Supported expansion options include company workforce and people education; the API decides entitlements and credit costs. Full response fields, nested data, pagination metadata and scores are preserved.
+
+Each invocation makes one request with no automatic retry, pagination, polling, or result-URL download. Advanced export jobs require an explicit count of 1–50,000. The documented schema allows a larger export count than the prose; this adapter uses the conservative 50,000 limit. Page-based search defaults to page 1 and size 10, with size at most 100 and a 10,000-result ceiling. Beta email operations require explicit `allow_beta=true`. The selector fixes the API host and operation mapping; it cannot call arbitrary URLs. Saved-list administration is deliberately outside this integration scope. `/me` is credential-validation-only and its response is never exposed.
 
 The API key is stored as a Secret Text connection and checked with the free `GET /me` endpoint. Obtain it from the [CompanyEnrich dashboard](https://app.companyenrich.com/) and omit the `Bearer` prefix.
 

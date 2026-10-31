@@ -1,72 +1,57 @@
 # CompanyEnrich endpoint coverage
 
-Audited on 2026-10-31 against the current public API reference and the actual action/tool registrations, request builders, and response parsers in the prepared submissions. The reference contains **48 documented HTTP operations**, recorded with source URLs and input fields in [api-endpoints.json](api-endpoints.json). This is an inventory, not a recommendation to expose every administrative operation in every agent.
+Expanded on 2026-10-31 against the public API reference. The twelve native adapters now provide **twelve core capabilities plus an explicit advanced selector covering 42 HTTP operations in total**. The full reference has 48 operations: five saved-list administration routes are intentionally outside this scope, and `GET /me` remains credential-validation-only. The advanced selector includes the twelve core routes; these are not 54 distinct endpoints.
 
-**The prepared integrations do not provide complete product coverage.** Eleven native adapters expose three company operations; Haystack exposes one. Nango provides generic API access, while the MCP connections inherit the hosted server's tool inventory. The earlier [build audit](BUILD_STATUS.md) verified builds and tests, not endpoint completeness. This audit does not add endpoints or claim live authenticated validation.
+The earlier implementation scope was too narrow: eleven native adapters had three company operations, and Haystack had one. Successful builds did not establish product coverage. This expansion adds the missing useful data capabilities, rich inputs, and response preservation. See [the complete 48-operation inventory](api-endpoints.json), [the 42-operation selector](ADVANCED_OPERATIONS.md), and [validation and remaining gates](BUILD_STATUS.md).
 
-## What “enrichment only” means in each case
+## Core capabilities
 
-- **Haystack really is enrichment only.** The [submitted proposal](https://github.com/deepset-ai/haystack-core-integrations/issues/4179) explicitly limits the first contribution to domain enrichment and defers search/lookalikes. This was a submission scope choice, not a demonstrated platform restriction.
-- **Sim has three operations.** Its operation selector defaults to enrichment; search and lookalikes are also wired. Seeing enrichment selected does not mean the other two are missing.
-- **Nango is an authentication and proxy provider.** Its `/me` quickstart is a credential example. Callers can supply other CompanyEnrich paths, methods, parameters, and bodies through Nango's proxy. It has no prebuilt CompanyEnrich actions or syncs and no CompanyEnrich-specific endpoint allowlist.
-- **MCP entries are server connections.** They discover tools rather than hardcode REST endpoints. They should not be assessed by counting native REST calls in the connector source.
-
-The three-action scope is visible in the native implementations and documentation, and the implemented actions are registered. The absent endpoint families are therefore mainly unimplemented features from the initial limited scope, rather than forgotten action registrations. There is no documented platform requirement that makes people, workforce, or the other useful operations impossible. Calling these complete CompanyEnrich integrations would overstate their coverage.
-
-## Native adapters, one by one
-
-“Three” below means `GET /companies/enrich`, `POST /companies/search`, and `POST /companies/similar`. An internal `/me` credential probe is not an additional data feature. None of these native adapters exposes a public, general-purpose CompanyEnrich API request action.
-
-| Integration | Data operations | Search and lookalike input coverage | Source |
-| --- | --- | --- | --- |
-| Sim | Three | Literal name/domain query; one lookalike seed | [PR #9485](https://github.com/simstudioai/sim/pull/9485) |
-| Pipedream | Three | Literal query, countries, keywords; 1–10 seeds and countries/keywords for lookalikes | [Source branch](https://github.com/namirali/pipedream/tree/codex/companyenrich-integration/components/companyenrich) |
-| Botpress | Three | Semantic query; 1–10 seeds; no structured search filters | [Fork PR #1](https://github.com/namirali/botpress/pull/1) |
-| Activepieces | Three | Literal name/domain query; one seed | [Registration](activepieces/src/index.ts), [inputs](activepieces/src/lib/actions/discover-companies.ts) |
-| Corsair | Three | Literal query, countries, keywords; 1–10 seeds | [Registration](corsair/index.ts), [schemas](corsair/endpoints/types.ts) |
-| Dify | Three | Semantic query; 1–10 seeds; no structured search filters | [Registration](dify/provider/companyenrich.yaml), [client](dify/common/client.py) |
-| CrewAI | Three | Semantic query; 1–10 seeds; no structured search filters | [PR #8844](https://github.com/crewAIInc/crewAI/pull/8844) |
-| Langflow | Three | Optional semantic query plus a Filters object for other search body fields; lookalike Filters also supported | [PR #16078](https://github.com/langflow-ai/langflow/pull/16078) |
-| Haystack | Domain enrichment only | Component and agent-tool wrapper call the same endpoint; no search/lookalikes | [Source branch](https://github.com/namirali/haystack-core-integrations/tree/codex/companyenrich-integration/integrations/companyenrich) |
-| LlamaIndex | Three | Semantic query; 1–10 seeds; no structured search filters | [Tool specification](llama-index/src/llama_index/tools/companyenrich/base.py) |
-| Strands | Three | Semantic query; 1–10 seeds; no structured search filters | [Registered tools](strands/src/companyenrich_strands/__init__.py) |
-| CAMEL | Three | Semantic query; 1–10 seeds; no structured search filters | [Toolkit](camel/src/companyenrich_camel/__init__.py) |
-
-## Coverage gaps inside implemented endpoints
-
-The current company search schema has 29 body fields, including literal and semantic queries, geography, employee/revenue ranges, funding, technologies, exclusions, and workforce filters. Most wrappers expose only query text and pagination. Langflow can pass additional body fields through its Filters input; this does not add other endpoints. [Search reference](https://docs.companyenrich.com/reference/post_companies-search)
-
-The native wrappers do not expose the documented `expand=workforce` response option, or the relevant `waitForEnrichment` options on enrichment/lookalikes. Langflow's workforce filtering is distinct from retrieving the workforce expansion. Returning an ordinary company profile is also not equivalent to calling the workforce API. [Enrichment](https://docs.companyenrich.com/reference/get_companies-enrich), [lookalikes](https://docs.companyenrich.com/reference/post_companies-similar), [workforce](https://docs.companyenrich.com/reference/get_companies-workforce)
-
-Response coverage is uneven too:
-
-- Sim and Corsair project company profiles to ten fields, so other returned fields are discarded. Sim retains similarity scores through a flattened output; Corsair retains page and score metadata. [Sim parser](https://github.com/simstudioai/sim/blob/31444f9179ca9c2c88e0630bbff4b6643d5bd77a/apps/sim/tools/companyenrich/utils.ts), [Corsair schema](corsair/endpoints/types.ts)
-- Pipedream discovery returns company arrays but omits pagination metadata and similarity scores. That limitation is documented in its current README. [Pipedream source](https://github.com/namirali/pipedream/tree/codex/companyenrich-integration/components/companyenrich)
-- Botpress, Activepieces, Dify, and the audited Python adapters preserve raw response objects, but that does not make unrequested expansions or unimplemented endpoints available.
-
-Python `async` methods call the same REST endpoints asynchronously; they do not implement CompanyEnrich's background export or bulk-job APIs. Multiple lookalike seed domains are not batch enrichment.
-
-## Useful missing capabilities and suggested scope
-
-These priorities are recommendations from this audit, not features already implemented. They apply to native adapters; Nango can already proxy these routes and MCP coverage depends on the server.
-
-| Capability | Current native coverage | Recommendation and official reference |
+| Capability | HTTP operation | Inputs and output |
 | --- | --- | --- |
-| Company search/lookalikes in Haystack | Missing | Add separate discovery components/tools if the contribution expands beyond an enricher. |
-| Rich company search and similarity controls | Partial | Support literal and semantic search, structured filters, and relevant request options consistently. [Search](https://docs.companyenrich.com/reference/post_companies-search), [similar](https://docs.companyenrich.com/reference/post_companies-similar) |
-| People search and reverse-email/person lookup | Missing in all 12 native adapters | High priority for prospecting, CRM, and agent workflows. [People search](https://docs.companyenrich.com/reference/post_people-search), [lookup](https://docs.companyenrich.com/reference/post_people-lookup) |
-| Workforce/headcount retrieval | Missing in all 12 | Add the dedicated operation and explicit expansion options where appropriate. [Workforce](https://docs.companyenrich.com/reference/get_companies-workforce) |
-| Enrich by name/social properties and fetch by ID | Missing in all 12 | Useful when a domain is unavailable or a previous result already supplies an ID. [Properties](https://docs.companyenrich.com/reference/post_companies-enrich), [company ID](https://docs.companyenrich.com/reference/get_companies), [person ID](https://docs.companyenrich.com/reference/get_people) |
-| Batch company enrichment | Missing in all 12 | High value for workflow and pipeline hosts; support the documented 1–50 domain batch. [Batch](https://docs.companyenrich.com/reference/post_companies-enrich-batch) |
-| Search/lookalike counts and previews | Missing in all 12 | Counts help estimate result sets; previews need explicit plan handling because they require Scale. [Count](https://docs.companyenrich.com/reference/post_companies-search-count), [similar count](https://docs.companyenrich.com/reference/post_companies-similar-count), [preview](https://docs.companyenrich.com/reference/post_companies-search-preview), [similar preview](https://docs.companyenrich.com/reference/post_companies-similar-preview) |
-| Cursor-based company/people/lookalike retrieval | Missing in all 12 | Add explicit cursor operations for large datasets; keep page limits and credit use visible. [Company scroll](https://docs.companyenrich.com/reference/post_companies-search-scroll), [people scroll](https://docs.companyenrich.com/reference/post_people-search-scroll), [similar scroll](https://docs.companyenrich.com/reference/post_companies-similar-scroll) |
-| Bulk enrichment and async exports | Missing in all 12 | Best suited to workflow/pipeline integrations. Implement create, status, and result handling together rather than expose only job creation. [Bulk](https://docs.companyenrich.com/reference/post_companies-enrich-bulk), [company export](https://docs.companyenrich.com/reference/post_companies-search-async), [people export](https://docs.companyenrich.com/reference/post_people-search-async) |
-| Work-email resolution, bulk email, education | Missing in all 12 | Useful optional people capabilities; email endpoints are explicitly beta and need status handling. [Email](https://docs.companyenrich.com/reference/get_people-email), [bulk email](https://docs.companyenrich.com/reference/post_people-email-bulk), [education](https://docs.companyenrich.com/reference/get_people-education) |
-| Saved lists, autocomplete, geography and taxonomies | Missing as data features | Add where the host's workflow or input UI benefits; not every agent needs list management. Exact operations are in [the inventory](api-endpoints.json). |
+| Domain enrichment | `GET /companies/enrich` | Domain; optional workforce expansion and wait-for-enrichment; full profile |
+| Company search | `POST /companies/search` | Literal/semantic query, structured filters, explicit page; full metadata |
+| Lookalikes | `POST /companies/similar` | 1–10 domains, structured filters, supported expansion/wait options; scores retained |
+| People search | `POST /people/search` | Structured people/company filters, explicit page and education expansion |
+| Email-to-person lookup | `POST /people/lookup` | Email and optional education expansion |
+| Workforce | `GET /companies/workforce` | Exactly one company UUID or domain |
+| Enrich by matching properties | `POST /companies/enrich` | At least one documented name/social property; optional workforce expansion |
+| Batch enrichment | `POST /companies/enrich/batch` | 1–50 domains; array response preserved |
+| Company by ID | `GET /companies` | Company UUID; supported expansion |
+| Person by ID | `GET /people` | Positive int64 ID, including decimal strings to avoid JavaScript precision loss |
+| Company count | `POST /companies/search/count` | Search filters; preserves zero |
+| Lookalike count | `POST /companies/similar/count` | 1–10 seed domains and filters; preserves zero |
 
-The existing explicit pagination and absence of automatic paid retries are separate design choices worth retaining. They are not reasons to omit people or workforce support.
+Native adapters expose these through their actual framework registries. Existing public names and core defaults are preserved. Some Python adapters retain their existing five-result default; other core actions default to ten. The advanced page-based search defaults explicitly to page 1 and size 10.
 
-The public `/jobs` routes manage asynchronous API jobs, **not job postings**. Job-posting and ad-intelligence product routes were not present in this 48-operation public reference, so no route should be invented for them. Funding is already represented in company data and search fields; a separate funding endpoint was not found in this reference. [API index](https://docs.companyenrich.com/llms.txt), [jobs reference](https://docs.companyenrich.com/reference/get_jobs)
+## Native adapters
+
+| Integration | Implemented coverage | Source / review |
+| --- | --- | --- |
+| Sim | Twelve core operations plus advanced selector; full response data retained alongside compatible outputs | [PR #9485](https://github.com/simstudioai/sim/pull/9485) |
+| Pipedream | Twelve core actions plus advanced selector; legacy discovery arrays retained with full page/metadata companion exports | [Source branch](https://github.com/namirali/pipedream/tree/codex/companyenrich-integration/components/companyenrich) |
+| Botpress | Twelve core actions plus advanced selector; complete JSON output envelopes | [Fork PR #1](https://github.com/namirali/botpress/pull/1) |
+| Activepieces | Twelve core actions plus advanced selector; complete response values | [Registration](activepieces/src/index.ts), [actions](activepieces/src/lib/actions/catalog.ts) |
+| Corsair | Twelve core data methods plus advanced selector; company/page schemas retain additional fields | [Registration](corsair/index.ts), [schemas](corsair/endpoints/types.ts) |
+| Dify | Twelve core tools plus advanced selector; arrays/numbers wrapped as `data` for Dify JSON messages | [Provider](dify/provider/companyenrich.yaml), [PR #3576](https://github.com/langgenius/dify-plugins/pull/3576) |
+| CrewAI | Twelve core tools plus advanced selector, including catalog exports | [PR #8844](https://github.com/crewAIInc/crewAI/pull/8844) |
+| Langflow | Twelve core components plus advanced selector, including migration and release registration | [PR #16078](https://github.com/langflow-ai/langflow/pull/16078) |
+| Haystack | Existing enricher retained; discovery, people, counts and advanced operations added | [Source branch](https://github.com/namirali/haystack-core-integrations/tree/codex/companyenrich-integration/integrations/companyenrich) |
+| LlamaIndex | Twelve core tools plus advanced selector, synchronous and asynchronous | [Tool specification](llama-index/src/llama_index/tools/companyenrich/base.py) |
+| Strands | Twelve core tools plus advanced selector | [Registered tools](strands/src/companyenrich_strands/__init__.py) |
+| CAMEL | Twelve core tools plus advanced selector | [Toolkit](camel/src/companyenrich_camel/__init__.py) |
+
+Search filters are JSON objects, so callers can supply geography, funding, workforce, technology, exclusions and other documented fields. Dedicated parameters take precedence. Unknown evolving body fields are preserved for server validation; unknown query and path parameters are rejected to catch mistakes. Supported `expand` options are exposed separately. Full API responses retain future nested fields, page metadata and similarity scores; Pipedream and Sim retain compatible legacy outputs alongside complete data.
+
+## Advanced operations and deliberate limits
+
+The fixed selector also covers search/lookalike previews, company/people/lookalike scroll, bulk enrichment, company/people export jobs, job status/list operations, work-email resolution, bulk email/status, education, geography, industries and autocomplete. Each route is documented in [ADVANCED_OPERATIONS.md](ADVANCED_OPERATIONS.md).
+
+- New actions and default configurations make one request per invocation. No automatic pagination, job polling, or result-URL downloading occurs. Returned status/result URLs remain data. Haystack retains its legacy explicitly configured retry option; the default remains zero and all new operations make one attempt.
+- Beta email operations require `allow_beta=true`. Provider entitlements and credit charges still apply; preview availability depends on the plan.
+- Export jobs require an explicit count, capped at 50,000. The public prose says 50,000 while the OpenAPI schema permits a larger value; the adapters choose the conservative limit.
+- Page size is 1–100 and page-based search is capped at 10,000 results. Batch enrichment accepts 1–50 domains; lookalikes accept 1–10 seeds. Larger workloads use explicit bulk/scroll operations.
+- Saved-list administration is intentionally excluded. `/me` can contain account secrets and is never a public data action.
+- `/jobs` manages background API jobs, not job postings. The audited public reference contains no separate advertising or job-posting product routes, so none were invented. Funding is available in company data and search filters.
 
 ## Proxy and MCP coverage
 
@@ -82,6 +67,6 @@ The public `/jobs` routes manage asynchronous API jobs, **not job postings**. Jo
 
 The [MCP setup guide](https://docs.companyenrich.com/docs/mcp-server) describes three company capabilities, while the [AI-agents product page](https://companyenrich.com/solutions/ai-agents) also documents people search and reverse email. Authenticated `tools/list` and schemas were not available for this audit. Therefore MCP connections cannot currently be certified as exposing all 48 REST operations, or any specific unverified server tool. The local MCP fixture tests verified client interoperability, not the live server's feature inventory.
 
-## Audit limits
+## Validation limits
 
-Source coverage was checked at the existing submitted commits, including registration and output behavior. The current documentation was read without making authenticated or credit-consuming API requests. No product entitlement or live result behavior was inferred from successful builds. Only documentation and the API inventory changed in this audit; implementation expansion remains outstanding.
+Coverage is verified through source inspection, framework registry tests, mocked routing/response tests, package builds and applicable contribution checks. All 42 advanced mappings and twelve core routes are exercised locally. Mocked tests verify behavior without consuming credits; they do not establish live API behavior, plan entitlements or Marketplace deployment readiness. Upstream approval, contributor policies and required live tests remain distinct from code completion.

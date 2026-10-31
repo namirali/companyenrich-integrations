@@ -3,12 +3,18 @@ import { PieceAuth } from '@activepieces/pieces-framework';
 async function request({ apiKey, path, method = 'GET', body, queryParams }: RequestInput): Promise<unknown> {
   const url = new URL(path, 'https://api.companyenrich.com');
   for (const [key, value] of Object.entries(queryParams ?? {})) url.searchParams.set(key, value);
+  return send(apiKey, {url: url.toString(), method, body: body === undefined ? undefined : JSON.stringify(body)});
+}
+
+async function send(apiKey: string, input: {url: string; method: string; body?: string}): Promise<unknown> {
+  const url = new URL(input.url);
+  if (url.origin !== "https://api.companyenrich.com") throw new Error("Invalid CompanyEnrich host");
   let response: Response;
   try {
     response = await fetch(url, {
-      method,
+      method: input.method,
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: body === undefined ? undefined : JSON.stringify(body),
+      body: input.body,
       signal: AbortSignal.timeout(30_000),
       redirect: 'error',
     });
@@ -16,7 +22,7 @@ async function request({ apiKey, path, method = 'GET', body, queryParams }: Requ
     throw new Error('CompanyEnrich request failed or timed out. No retry was attempted.');
   }
   if (!response.ok) throw new Error(`CompanyEnrich request failed (HTTP ${response.status}).`);
-  if (path === '/me') return undefined;
+  if (url.pathname === '/me') return undefined;
   try {
     return await response.json();
   } catch {
@@ -36,7 +42,7 @@ function pageInput({ page = 1, pageSize = 10 }: { page?: number; pageSize?: numb
   return { page, pageSize };
 }
 
-export const companyenrichClient = { request, pageInput, queryInput };
+export const companyenrichClient = { request, send, pageInput, queryInput };
 
 export const companyenrichAuth = PieceAuth.SecretText({
   displayName: 'API Key',

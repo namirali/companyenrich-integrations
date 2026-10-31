@@ -1,0 +1,35 @@
+identity:
+  name: enrich_companies_batch
+  author: namirali
+  label:
+    en_US: Enrich Companies Batch
+description:
+  human:
+    en_US: Enrich Companies Batch using CompanyEnrich. Preserves the full response;
+      one request per invocation, no retries. May consume credits.
+  llm: Enrich Companies Batch using CompanyEnrich. Preserves the full response; one
+    request per invocation, no retries. May consume credits.
+parameters:
+- name: domains
+  type: string
+  required: true
+  label:
+    en_US: Domains
+  human_description:
+    en_US: 'Comma-separated domains: 1–10 for lookalikes, 1–50 for batch enrichment.'
+  llm_description: 'Comma-separated domains: 1–10 for lookalikes, 1–50 for batch enrichment.'
+  form: llm
+- name: expand
+  type: string
+  required: false
+  label:
+    en_US: Expand
+  human_description:
+    en_US: Comma-separated expansions (workforce for company routes, education for
+      people routes).
+  llm_description: Comma-separated expansions (workforce for company routes, education
+    for people routes).
+  form: llm
+extra:
+  python:
+    source: tools/enrich_companies_batch.py

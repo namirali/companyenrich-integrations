@@ -10,6 +10,16 @@ def test_framework_tools_and_dispatch(respx_mock):
         "companyenrich_enrich_company",
         "companyenrich_search_companies",
         "companyenrich_similar_companies",
+        "companyenrich_search_people",
+        "companyenrich_lookup_person",
+        "companyenrich_company_workforce",
+        "companyenrich_enrich_company_by_properties",
+        "companyenrich_enrich_companies_batch",
+        "companyenrich_get_company",
+        "companyenrich_get_person",
+        "companyenrich_count_companies",
+        "companyenrich_count_similar_companies",
+        "companyenrich_advanced_operation",
     ]
     for tool in tools:
         schema = tool.tool_spec["inputSchema"]["json"]

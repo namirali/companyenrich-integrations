@@ -1,0 +1,37 @@
+identity:
+  name: enrich_company_by_properties
+  author: namirali
+  label:
+    en_US: Enrich Company by Properties
+description:
+  human:
+    en_US: Enrich Company by Properties using CompanyEnrich. Preserves the full response;
+      one request per invocation, no retries. May consume credits.
+  llm: Enrich Company by Properties using CompanyEnrich. Preserves the full response;
+    one request per invocation, no retries. May consume credits.
+parameters:
+- name: properties
+  type: string
+  required: true
+  label:
+    en_US: Properties
+  human_description:
+    en_US: JSON object with at least one company name, linkedinUrl, linkedinId, twitterUrl,
+      facebookUrl, instagramUrl or youTubeUrl.
+  llm_description: JSON object with at least one company name, linkedinUrl, linkedinId,
+    twitterUrl, facebookUrl, instagramUrl or youTubeUrl.
+  form: llm
+- name: expand
+  type: string
+  required: false
+  label:
+    en_US: Expand
+  human_description:
+    en_US: Comma-separated expansions (workforce for company routes, education for
+      people routes).
+  llm_description: Comma-separated expansions (workforce for company routes, education
+    for people routes).
+  form: llm
+extra:
+  python:
+    source: tools/enrich_company_by_properties.py
