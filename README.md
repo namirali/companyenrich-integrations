@@ -1,8 +1,10 @@
 # CompanyEnrich integrations
 
-Adapters and connection examples for CompanyEnrich company enrichment, semantic company search, and lookalike discovery. Each directory documents its setup, validation, and upstream distribution status. See the [target-by-target assessment](TARGETS.md) for all upstream PRs, existing integrations, contribution prerequisites, and deferred targets.
+Adapters and connection examples for CompanyEnrich company enrichment, company search, and lookalike discovery. These are initial integrations with partial endpoint and input coverage; they do not expose the complete CompanyEnrich API. Each directory documents its setup, validation, and upstream distribution status. See the [target-by-target assessment](TARGETS.md) for all upstream PRs, existing integrations, contribution prerequisites, and deferred targets.
 
 The [build audit](BUILD_STATUS.md) records the 2026-10-31 fixes, validation for every prepared integration, and remaining upstream CI or approval blockers.
+
+The [endpoint coverage audit](ENDPOINT_COVERAGE.md) distinguishes native actions, Nango proxy access, and dynamic MCP tools, and records missing endpoint families, filters, and response fields.
 
 ## Available code
 

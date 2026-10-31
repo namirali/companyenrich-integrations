@@ -1,0 +1,1157 @@
+{
+  "checked_at": "2026-10-31T09:50:30.198067+00:00",
+  "source": "https://docs.companyenrich.com/llms.txt",
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/companies/enrich",
+      "title": "Enrich by domain",
+      "tags": [
+        "Company / Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_companies-enrich",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "domain"
+        },
+        {
+          "in": "query",
+          "name": "expand"
+        },
+        {
+          "in": "query",
+          "name": "waitForEnrichment"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/companies/enrich",
+      "title": "Enrich by properties",
+      "tags": [
+        "Company / Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-enrich",
+      "beta": false,
+      "body_fields": [
+        "name",
+        "linkedinUrl",
+        "linkedinId",
+        "twitterUrl",
+        "facebookUrl",
+        "instagramUrl",
+        "youTubeUrl"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/companies/enrich/batch",
+      "title": "Batch enrich",
+      "tags": [
+        "Company / Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-enrich-batch",
+      "beta": false,
+      "body_fields": [
+        "domains"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/companies/workforce",
+      "title": "Workforce",
+      "tags": [
+        "Company / Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_companies-workforce",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "id"
+        },
+        {
+          "in": "query",
+          "name": "domain"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/companies/autocomplete",
+      "title": "Autocomplete",
+      "tags": [
+        "Company / Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_companies-autocomplete",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "query"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/companies/enrich/bulk",
+      "title": "Create job",
+      "tags": [
+        "Company / Bulk Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-enrich-bulk",
+      "beta": false,
+      "body_fields": [
+        "domains",
+        "webhook_url"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/companies/enrich/bulk/{jobId}",
+      "title": "Get job status",
+      "tags": [
+        "Company / Bulk Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_companies-enrich-bulk-jobid",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "jobId"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/companies/enrich/bulk/jobs",
+      "title": "List jobs",
+      "tags": [
+        "Company / Bulk Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_companies-enrich-bulk-jobs",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "page"
+        },
+        {
+          "in": "query",
+          "name": "pageSize"
+        },
+        {
+          "in": "query",
+          "name": "status"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/companies/search",
+      "title": "Search",
+      "tags": [
+        "Company / Search"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-search",
+      "beta": false,
+      "body_fields": [
+        "page",
+        "pageSize",
+        "lists",
+        "semanticQuery",
+        "semanticWeight",
+        "exclude",
+        "query",
+        "foundedYear",
+        "fundingAmount",
+        "fundingYear",
+        "categoryOperator",
+        "keywordsOperator",
+        "technologiesOperator",
+        "workforceGrowth",
+        "workforceSize",
+        "require",
+        "regions",
+        "countries",
+        "states",
+        "cities",
+        "type",
+        "category",
+        "employees",
+        "reportedEmployees",
+        "revenue",
+        "naicsCode",
+        "keywords",
+        "technologies",
+        "fundingRounds"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/companies/search/preview",
+      "title": "Preview",
+      "tags": [
+        "Company / Search"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-search-preview",
+      "beta": false,
+      "body_fields": [
+        "lists",
+        "semanticQuery",
+        "semanticWeight",
+        "exclude",
+        "query",
+        "foundedYear",
+        "fundingAmount",
+        "fundingYear",
+        "categoryOperator",
+        "keywordsOperator",
+        "technologiesOperator",
+        "workforceGrowth",
+        "workforceSize",
+        "require",
+        "regions",
+        "countries",
+        "states",
+        "cities",
+        "type",
+        "category",
+        "employees",
+        "reportedEmployees",
+        "revenue",
+        "naicsCode",
+        "keywords",
+        "technologies",
+        "fundingRounds"
+      ],
+      "parameters": []
+    },
+    {
+      "method": "POST",
+      "path": "/companies/search/count",
+      "title": "Count",
+      "tags": [
+        "Company / Search"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-search-count",
+      "beta": false,
+      "body_fields": [
+        "lists",
+        "semanticQuery",
+        "semanticWeight",
+        "exclude",
+        "query",
+        "foundedYear",
+        "fundingAmount",
+        "fundingYear",
+        "categoryOperator",
+        "keywordsOperator",
+        "technologiesOperator",
+        "workforceGrowth",
+        "workforceSize",
+        "require",
+        "regions",
+        "countries",
+        "states",
+        "cities",
+        "type",
+        "category",
+        "employees",
+        "reportedEmployees",
+        "revenue",
+        "naicsCode",
+        "keywords",
+        "technologies",
+        "fundingRounds"
+      ],
+      "parameters": []
+    },
+    {
+      "method": "POST",
+      "path": "/companies/search/scroll",
+      "title": "Scroll",
+      "tags": [
+        "Company / Search"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-search-scroll",
+      "beta": false,
+      "body_fields": [
+        "pageSize",
+        "cursor",
+        "lists",
+        "semanticQuery",
+        "semanticWeight",
+        "exclude",
+        "query",
+        "foundedYear",
+        "fundingAmount",
+        "fundingYear",
+        "categoryOperator",
+        "keywordsOperator",
+        "technologiesOperator",
+        "workforceGrowth",
+        "workforceSize",
+        "require",
+        "regions",
+        "countries",
+        "states",
+        "cities",
+        "type",
+        "category",
+        "employees",
+        "reportedEmployees",
+        "revenue",
+        "naicsCode",
+        "keywords",
+        "technologies",
+        "fundingRounds"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/companies",
+      "title": "Get by ID",
+      "tags": [
+        "Company / Search"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_companies",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "id"
+        },
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/companies/search/async",
+      "title": "Create export job",
+      "tags": [
+        "Company / Export"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-search-async",
+      "beta": false,
+      "body_fields": [
+        "count",
+        "webhook_url",
+        "search",
+        "similar"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/companies/search/async/{jobId}",
+      "title": "Get export job status",
+      "tags": [
+        "Company / Export"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_companies-search-async-jobid",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "jobId"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/companies/search/async/jobs",
+      "title": "List export jobs",
+      "tags": [
+        "Company / Export"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_companies-search-async-jobs",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "page"
+        },
+        {
+          "in": "query",
+          "name": "pageSize"
+        },
+        {
+          "in": "query",
+          "name": "status"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/companies/similar",
+      "title": "Find similar",
+      "tags": [
+        "Company / Similar"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-similar",
+      "beta": false,
+      "body_fields": [
+        "domain",
+        "page",
+        "pageSize",
+        "domains",
+        "similarityWeight",
+        "minScore",
+        "exclude",
+        "query",
+        "foundedYear",
+        "fundingAmount",
+        "fundingYear",
+        "categoryOperator",
+        "keywordsOperator",
+        "technologiesOperator",
+        "workforceGrowth",
+        "workforceSize",
+        "require",
+        "regions",
+        "countries",
+        "states",
+        "cities",
+        "type",
+        "category",
+        "employees",
+        "reportedEmployees",
+        "revenue",
+        "naicsCode",
+        "keywords",
+        "technologies",
+        "fundingRounds"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        },
+        {
+          "in": "query",
+          "name": "waitForEnrichment"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/companies/similar/preview",
+      "title": "Preview",
+      "tags": [
+        "Company / Similar"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-similar-preview",
+      "beta": false,
+      "body_fields": [
+        "domains",
+        "similarityWeight",
+        "minScore",
+        "exclude",
+        "query",
+        "foundedYear",
+        "fundingAmount",
+        "fundingYear",
+        "categoryOperator",
+        "keywordsOperator",
+        "technologiesOperator",
+        "workforceGrowth",
+        "workforceSize",
+        "require",
+        "regions",
+        "countries",
+        "states",
+        "cities",
+        "type",
+        "category",
+        "employees",
+        "reportedEmployees",
+        "revenue",
+        "naicsCode",
+        "keywords",
+        "technologies",
+        "fundingRounds"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "waitForEnrichment"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/companies/similar/count",
+      "title": "Count",
+      "tags": [
+        "Company / Similar"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-similar-count",
+      "beta": false,
+      "body_fields": [
+        "domains",
+        "similarityWeight",
+        "minScore",
+        "exclude",
+        "query",
+        "foundedYear",
+        "fundingAmount",
+        "fundingYear",
+        "categoryOperator",
+        "keywordsOperator",
+        "technologiesOperator",
+        "workforceGrowth",
+        "workforceSize",
+        "require",
+        "regions",
+        "countries",
+        "states",
+        "cities",
+        "type",
+        "category",
+        "employees",
+        "reportedEmployees",
+        "revenue",
+        "naicsCode",
+        "keywords",
+        "technologies",
+        "fundingRounds"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "waitForEnrichment"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/companies/similar/scroll",
+      "title": "Scroll",
+      "tags": [
+        "Company / Similar"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_companies-similar-scroll",
+      "beta": false,
+      "body_fields": [
+        "pageSize",
+        "cursor",
+        "domains",
+        "similarityWeight",
+        "minScore",
+        "exclude",
+        "query",
+        "foundedYear",
+        "fundingAmount",
+        "fundingYear",
+        "categoryOperator",
+        "keywordsOperator",
+        "technologiesOperator",
+        "workforceGrowth",
+        "workforceSize",
+        "require",
+        "regions",
+        "countries",
+        "states",
+        "cities",
+        "type",
+        "category",
+        "employees",
+        "reportedEmployees",
+        "revenue",
+        "naicsCode",
+        "keywords",
+        "technologies",
+        "fundingRounds"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        },
+        {
+          "in": "query",
+          "name": "waitForEnrichment"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/people/lookup",
+      "title": "Lookup person",
+      "tags": [
+        "People / Search"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_people-lookup",
+      "beta": false,
+      "body_fields": [
+        "email"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/people",
+      "title": "Get by ID",
+      "tags": [
+        "People / Search"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_people",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "id"
+        },
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/people/search",
+      "title": "Search",
+      "tags": [
+        "People / Search"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_people-search",
+      "beta": false,
+      "body_fields": [
+        "page",
+        "pageSize",
+        "companyFilter",
+        "query",
+        "positionQuery",
+        "atCurrentCompanyAfter",
+        "atCurrentCompanyBefore",
+        "atCurrentPositionAfter",
+        "atCurrentPositionBefore",
+        "exclude",
+        "countries",
+        "domains",
+        "seniority",
+        "department",
+        "education"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/people/search/scroll",
+      "title": "Scroll",
+      "tags": [
+        "People / Search"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_people-search-scroll",
+      "beta": false,
+      "body_fields": [
+        "pageSize",
+        "cursor",
+        "companyFilter",
+        "query",
+        "positionQuery",
+        "atCurrentCompanyAfter",
+        "atCurrentCompanyBefore",
+        "atCurrentPositionAfter",
+        "atCurrentPositionBefore",
+        "exclude",
+        "countries",
+        "domains",
+        "seniority",
+        "department",
+        "education"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/people/email",
+      "title": "Email (BETA)",
+      "tags": [
+        "People / Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_people-email",
+      "beta": true,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "id"
+        },
+        {
+          "in": "query",
+          "name": "domain"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/people/email/bulk",
+      "title": "Create bulk email enrichment job (BETA)",
+      "tags": [
+        "People / Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_people-email-bulk",
+      "beta": true,
+      "body_fields": [
+        "items",
+        "webhook_url"
+      ],
+      "parameters": []
+    },
+    {
+      "method": "GET",
+      "path": "/people/email/bulk/{jobId}",
+      "title": "Get bulk email enrichment job status (BETA)",
+      "tags": [
+        "People / Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_people-email-bulk-jobid",
+      "beta": true,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "jobId"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/people/education",
+      "title": "Education",
+      "tags": [
+        "People / Enrichment"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_people-education",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/people/search/async",
+      "title": "Create export job",
+      "tags": [
+        "People / Export"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_people-search-async",
+      "beta": false,
+      "body_fields": [
+        "count",
+        "webhook_url",
+        "companyFilter",
+        "query",
+        "positionQuery",
+        "atCurrentCompanyAfter",
+        "atCurrentCompanyBefore",
+        "atCurrentPositionAfter",
+        "atCurrentPositionBefore",
+        "exclude",
+        "countries",
+        "domains",
+        "seniority",
+        "department",
+        "education"
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "expand"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/people/search/async/{jobId}",
+      "title": "Get export job status",
+      "tags": [
+        "People / Export"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_people-search-async-jobid",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "jobId"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/people/search/async/jobs",
+      "title": "List export jobs",
+      "tags": [
+        "People / Export"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_people-search-async-jobs",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "page"
+        },
+        {
+          "in": "query",
+          "name": "pageSize"
+        },
+        {
+          "in": "query",
+          "name": "status"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/jobs",
+      "title": "List all jobs",
+      "tags": [
+        "Jobs"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_jobs",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "page"
+        },
+        {
+          "in": "query",
+          "name": "pageSize"
+        },
+        {
+          "in": "query",
+          "name": "status"
+        },
+        {
+          "in": "query",
+          "name": "type"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/jobs/{jobId}",
+      "title": "Get job details",
+      "tags": [
+        "Jobs"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_jobs-jobid",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "jobId"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/companies",
+      "title": "Get all lists",
+      "tags": [
+        "Company / Lists"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_lists-companies",
+      "beta": false,
+      "body_fields": [],
+      "parameters": []
+    },
+    {
+      "method": "POST",
+      "path": "/lists/companies",
+      "title": "Create list",
+      "tags": [
+        "Company / Lists"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_lists-companies",
+      "beta": false,
+      "body_fields": [
+        "name",
+        "count",
+        "search",
+        "similar"
+      ],
+      "parameters": []
+    },
+    {
+      "method": "GET",
+      "path": "/lists/companies/{id}",
+      "title": "Get a list by id",
+      "tags": [
+        "Company / Lists"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_lists-companies-id",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/lists/companies/{id}",
+      "title": "Update list",
+      "tags": [
+        "Company / Lists"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/put_lists-companies-id",
+      "beta": false,
+      "body_fields": [
+        "name"
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lists/companies/{id}",
+      "title": "Delete list",
+      "tags": [
+        "Company / Lists"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/delete_lists-companies-id",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/geo/regions",
+      "title": "Get regions",
+      "tags": [
+        "Geo"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_geo-regions",
+      "beta": false,
+      "body_fields": [],
+      "parameters": []
+    },
+    {
+      "method": "GET",
+      "path": "/geo/countries/{countryCode}",
+      "title": "Get country by code",
+      "tags": [
+        "Geo"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_geo-countries-countrycode",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "countryCode"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/geo/countries",
+      "title": "Search countries",
+      "tags": [
+        "Geo"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_geo-countries",
+      "beta": false,
+      "body_fields": [
+        "query",
+        "page"
+      ],
+      "parameters": []
+    },
+    {
+      "method": "POST",
+      "path": "/geo/states",
+      "title": "Search states",
+      "tags": [
+        "Geo"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_geo-states",
+      "beta": false,
+      "body_fields": [
+        "query",
+        "countryCodes",
+        "page"
+      ],
+      "parameters": []
+    },
+    {
+      "method": "POST",
+      "path": "/geo/cities",
+      "title": "Search cities",
+      "tags": [
+        "Geo"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/post_geo-cities",
+      "beta": false,
+      "body_fields": [
+        "query",
+        "countryCodes",
+        "page"
+      ],
+      "parameters": []
+    },
+    {
+      "method": "GET",
+      "path": "/industries",
+      "title": "List industries",
+      "tags": [
+        "Industries"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_industries",
+      "beta": false,
+      "body_fields": [],
+      "parameters": []
+    },
+    {
+      "method": "GET",
+      "path": "/keywords/autocomplete",
+      "title": "Lookup keywords",
+      "tags": [
+        "Keywords"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_keywords-autocomplete",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "query"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/technologies/autocomplete",
+      "title": "Lookup technologies",
+      "tags": [
+        "Technologies"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_technologies-autocomplete",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "query"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/me",
+      "title": "Get current user information",
+      "tags": [
+        "User"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_me",
+      "beta": false,
+      "body_fields": [],
+      "parameters": []
+    },
+    {
+      "method": "GET",
+      "path": "/positions/autocomplete",
+      "title": "Lookup positions",
+      "tags": [
+        "Positions"
+      ],
+      "docs": "https://docs.companyenrich.com/reference/get_positions-autocomplete",
+      "beta": false,
+      "body_fields": [],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "query"
+        }
+      ]
+    }
+  ]
+}
