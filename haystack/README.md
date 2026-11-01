@@ -3,7 +3,8 @@
 The tested components, thirteen-tool toolset, package metadata, documentation, and tests are on the
 [CompanyEnrich branch in the Haystack fork](https://github.com/namirali/haystack-core-integrations/tree/codex/companyenrich-integration/integrations/companyenrich).
 The [integration proposal](https://github.com/deepset-ai/haystack-core-integrations/issues/4179) is open.
-There is no upstream PR yet.
+There is no upstream PR yet. Proposal acceptance is not an explicit prerequisite for opening a PR;
+the remaining submission work is live API validation and publishing the prepared CI workflow changes.
 
 `CompanyEnrichCompanyEnricher` and `CompanyEnrichCompanyEnricherTool` retain their domain-enrichment APIs. Eleven additional core components and an advanced request component provide company/people discovery, lookup, workforce, property and batch enrichment, ID retrieval and counts. `CompanyEnrichToolset` exposes all thirteen tools. The fixed advanced selector covers 42 documented operations, including the twelve core routes; see [coverage](../ENDPOINT_COVERAGE.md).
 

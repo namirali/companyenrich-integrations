@@ -40,7 +40,7 @@ Company snapshots are disabled by default. With a configured Corsair database, `
 
 Official references: [enrichment](https://docs.companyenrich.com/reference/get_companies-enrich), [search](https://docs.companyenrich.com/reference/post_companies-search), [similar companies](https://docs.companyenrich.com/reference/post_companies-similar), [credential check](https://docs.companyenrich.com/reference/get_me). Brand asset: [official SVG](https://companyenrich.com/companyenrich-solo-logo.svg).
 
-[Upstream proposal #2014](https://github.com/corsairdev/corsair/issues/2014) is open. Corsair requires an OSS claim and issue alignment before an upstream plugin PR, plus a working demo recording before merge. No claim, assignment, upstream PR, npm publication, live authenticated verification, or demo recording is asserted. The package remains private for review; upstream registration, generated docs, and package-manager wiring follow after the proposal is accepted.
+[Upstream proposal #2014](https://github.com/corsairdev/corsair/issues/2014) is open. Corsair's contribution process calls for an OSS claim and issue alignment; waiting for maintainer assignment is recommended. Its plugin PR rules require a working demo recording before merge. No claim, assignment, upstream PR, npm publication, live authenticated verification, or demo recording is asserted. The package remains private for review; upstream registration, generated docs, and package-manager wiring remain to be completed.
 
 ## Expanded API
 

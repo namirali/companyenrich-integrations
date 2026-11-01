@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-31",
+  "as_of": "2026-11-01",
   "scope": "Each target in integration-targets.md, including existing integrations and excluded repositories. Decisions reflect current public contribution policies and CompanyEnrich public API documentation.",
   "live_authenticated_api_calls": false,
   "targets": [
@@ -183,7 +183,7 @@
         "https://github.com/namirali/companyenrich-integrations/tree/main/corsair"
       ],
       "remaining": [
-        "OSS claim/assignment required before upstream PR; CompanyEnrich catalog entry unavailable. Live authenticated demo required before merge. Standalone package remains private; database snapshots not live-tested."
+        "OSS claim and issue alignment remain; maintainer assignment is recommended. Live authenticated demo required before merge. Upstream registration, generated docs and package-manager wiring remain. Standalone package remains private; database snapshots not live-tested."
       ],
       "initial_assessment": "Tested standalone typed plugin; upstream proposal opened.",
       "coverage": {
@@ -441,7 +441,7 @@
     {
       "repository": "botpress/botpress",
       "fit": "High",
-      "status": "fork-draft-pr-open-upstream-permission-blocked",
+      "status": "fork-pr-merged-upstream-submission-outstanding",
       "assessment": "Expanded native adapter: twelve core capabilities and a fixed advanced selector covering 42 documented HTTP operations. Structured filters, supported expansions and full responses retained; see ENDPOINT_COVERAGE.md and BUILD_STATUS.md for current implementation and validation.",
       "evidence_urls": [],
       "github_urls": [
